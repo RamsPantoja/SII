@@ -10,7 +10,7 @@ import DocentLogin from './page/login_docent';
 const App = () => {
   return (
     <Router>
-        <div>
+        <div className='App-container'>
           <Switch>
             <Route exact path='/main' component={MainPage}/>
             <Route exact path='/student_sign_in' component={StudentLogin}/>

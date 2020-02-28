@@ -1,0 +1,31 @@
+.cardSection-subcontainer {
+    display: grid;
+    grid-template-columns: 1fr  ;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    justify-items: center;
+}
+
+
+.newStyle-button {
+    display: block;
+    margin: 0px auto;
+    padding: 5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(26,80,131);
+    font-family: 'Roboto Mono';
+    transform: scale(1);
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+.newStyle-button:hover {
+    background-color: rgb(86,172,224);
+    transform: scale(1.1);
+}
+
+.link {
+    text-decoration: none;
+}
