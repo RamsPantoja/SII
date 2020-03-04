@@ -1,0 +1,37 @@
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    margin: 0px;
+    justify-content: stretch;
+    padding: 5px;
+}
+
+.input-login {
+    padding: 5px;
+    border: 1.5px solid rgb(102,169,221);
+    border-radius: 10px;
+    color:#000000;    
+    font-weight: bolder;
+    text-align: center;
+    font-family: 'Roboto Mono';
+}
+
+.button-login {
+    padding: 5px;
+    background-color: rgb(26,80,131);
+    border: none;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-family: 'Roboto Mono';
+    transform: scale(1);
+    transition: 0.1s ease;
+    cursor: pointer;
+}   
+
+.button-login:hover {
+    transform: scale(1.1);
+    background-color: rgb(86,172,224);
+}
+

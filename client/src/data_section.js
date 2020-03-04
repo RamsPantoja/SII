@@ -3,7 +3,7 @@ const data = [
         "id": 1,
         "img": "./img/graduated.png",
         "description": "Con su matricula y clave proporcionada en la secretaria académica, conoce tus tendencias de calificaciones tanto parciales como departamentales.",
-        "button_in": "Iniciar Sesion",
+        "button_in": "Entrar",
         "section": "Alumno",
         "to": "/student_sign_in"
     },
@@ -11,7 +11,7 @@ const data = [
         "id": 2,
         "img": "./img/user.png",
         "description": "Captura de calificaciones de examenes parciales y departamentales, estadisticas sobre alumnos y asistencias registradas por el profesor.",
-        "button_in": "Iniciar Sesion",
+        "button_in": "Entrar",
         "section": "Profesor",
         "to": "/docent_sign_in"
     },
