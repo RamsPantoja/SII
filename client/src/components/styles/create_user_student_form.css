@@ -1,14 +1,20 @@
-.form-container {
+.register-form-subcontainer {
+    display: flex;
+    padding-top: 20px;
+    flex-direction: column;
+}
+
+.register-form-subcontainer-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-gap: 10px;
-    margin: 0px;
-    justify-content: stretch;
-    padding: 6px;
+    grid-gap: 15px;
+    
 }
 
-.input-login {
+.input-register {
+    margin: 5px 0px;
+    display: block;
     padding: 5px;
     height: 20px;
     width: 250px;
@@ -16,11 +22,12 @@
     color:#000000;    
     border-radius: 2px;
     font-weight: bolder;
-    text-align: center;
     font-family: 'Roboto Mono';
 }
 
-.button-login {
+.button-submit {
+    display: block;
+    justify-self: left;
     padding: 5px;
     background-color: rgb(26,80,131);
     border: none;
@@ -32,8 +39,7 @@
     cursor: pointer;
 }   
 
-.button-login:hover {
+.button-submit:hover {
     transform: scale(1.1);
     background-color: rgb(86,172,224);
 }
-

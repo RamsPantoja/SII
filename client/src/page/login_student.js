@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //Components
 import LoginComponentWithHook from '../components/login_component';
@@ -13,6 +14,7 @@ const StudentLogin = () => {
                 <img src='./img/graduated.png' height='100px' width='100px'></img>
                 <h1>Alumno</h1>
                 <LoginComponentWithHook/>
+                <span>No tienes una cuenta?<Link className='link-to-create-user' to='/student/register'>Crear Cuenta</Link></span>
             </div>
         </div>
     )

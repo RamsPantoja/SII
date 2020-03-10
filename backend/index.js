@@ -5,7 +5,10 @@ import { resolvers } from './data/resolvers';
 
 const app = express();
 
-const server = new ApolloServer({typeDefs, resolvers});
+const server = new ApolloServer({
+    typeDefs, 
+    resolvers
+});
 
 server.applyMiddleware({app});
 
