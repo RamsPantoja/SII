@@ -26,7 +26,7 @@ const typeDefs = gql `
         firstname: String!
         lastname: String!
         email: String!
-        img: String,
+        img: String
         gender: genderStudent!
     }
 

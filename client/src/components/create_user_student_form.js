@@ -1,36 +1,48 @@
 import React from 'react';
-
+import { useMutation } from '@apollo/react-hooks';
 //styles
 import './styles/create_user_student_form.css';
 //Hooks
 import { useHandleInputChange } from '../hooks/useHandleInputChange';
+//Mutations
+import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
-    const [input, handleInputChange ] = useHandleInputChange();
+    const [input, handleInputChange] = useHandleInputChange();
+    const [createStudent, {data}] = useMutation(CREATE_STUDENT);
 
     return(
         <div className='register-form-subcontainer'>
-            <form className='register-form-subcontainer-grid'>
+            <form className='register-form-subcontainer-grid'
+                onSubmit={e => {
+                    e.preventDefault();
+                    createStudent({variables: {input: input}})
+                }}>
                 <div>
-                    <label>Nombre<input className='input-register' name='firstname' onChange={handleInputChange}/></label>
+                    <label>Nombre<input className='input-register' type='text' name='firstname' onChange={handleInputChange}/></label>
                 </div>
                 <div>
-                    <label>Apellido<input className='input-register' name='lastname' onChange={handleInputChange}/></label> 
+                    <label>Apellido<input className='input-register' type='text' name='lastname' onChange={handleInputChange}/></label> 
                 </div>
                 <div>
-                    <label>Matricula<input className='input-register' name='matricula' onChange={handleInputChange}/></label>
+                    <label>Matricula<input className='input-register' type='text' name='matricula' onChange={handleInputChange}/></label>
                 </div>
                 <div>
-                    <label>Nombre de Usuario<input className='input-register' name='username' onChange={handleInputChange}/></label>
+                    <label>Nombre de Usuario<input className='input-register' type='text' name='username' onChange={handleInputChange}/></label>
                 </div>
                 <div>
-                    <label>Password<input className='input-register' name='password' onChange={handleInputChange}/></label>
+                    <label>Password<input className='input-register' type='password' name='password' onChange={handleInputChange}/></label>
                 </div>
                 <div>
-                    <label>Email<input className='input-register' name='email' onChange={handleInputChange}/></label> 
+                    <label>Email<input className='input-register' type='email' name='email' onChange={handleInputChange}/></label> 
                 </div>
                 <div>
-                    <label>Genero<input className='input-register' name='gender'/></label>
+                    <label>Sexo</label>
+                    <select className='input-select-gender' name='gender' onChange={handleInputChange}>
+                        <option value=''>Elegir...</option>
+                        <option value='HOMBRE'>HOMBRE</option>
+                        <option value='MUJER'>MUJER</option>
+                    </select>
                 </div>
                 <button type='submit' className='button-submit'>Enviar</button>
             </form>

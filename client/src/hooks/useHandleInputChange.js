@@ -7,6 +7,7 @@ export const useHandleInputChange = () => {
         ...input,
         [e.currentTarget.name]: e.currentTarget.value
     });
-
+    
     return [input, handleInputChange];
+
 }

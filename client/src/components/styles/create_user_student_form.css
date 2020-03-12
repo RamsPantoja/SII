@@ -31,7 +31,6 @@
     padding: 5px;
     background-color: rgb(26,80,131);
     border: none;
-    border-radius: 6px;
     color: #FFFFFF;
     font-family: 'Roboto Mono';
     transform: scale(1);
@@ -42,4 +41,13 @@
 .button-submit:hover {
     transform: scale(1.1);
     background-color: rgb(86,172,224);
+}
+
+.input-select-gender {
+    border: 1px solid rgb(102,169,221);
+    display: block;
+    padding: 5px;
+    margin: 5px 0px;
+    font-family: 'Roboto Mono';
+    border-radius: 1px;
 }
