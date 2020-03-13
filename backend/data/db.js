@@ -21,3 +21,13 @@ const studentSchema = new mongoose.Schema({
 
 export const Students = mongoose.model('Students', studentSchema);
 
+const teacherSchema = new mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    password: String,
+    email: String,
+    img: String,
+    gender: String
+});
+
+export const Teachers = mongoose.model('Teachers', teacherSchema);
