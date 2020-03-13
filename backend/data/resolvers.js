@@ -1,4 +1,4 @@
-import mongoose, { Promise } from 'mongoose';
+import mongoose from 'mongoose';
 
 // Importamos los schemas de nuestra para las colecciones de la base de datos.
 import { Students, Teachers } from './db';
@@ -34,7 +34,7 @@ export const resolvers = {
                     if(error) rejects(error);
                     else resolve(newTeacher);
                 })
-            });
+            })
         },
         createStudent: (root, {input}) => {
             const newStudent = new Students({
@@ -51,11 +51,11 @@ export const resolvers = {
             newStudent.id = newStudent._id;
 
             return new Promise((resolve, object) => {
-                newStudent.save((error) => {
-                    if(error) rejects(error);
+                newStudent.save((err) => {
+                    if (err) rejects(err);
                     else resolve(newStudent);
-                })
-            })
+                });
+            });
         }
     }
 }

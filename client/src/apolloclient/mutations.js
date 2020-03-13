@@ -11,3 +11,16 @@ export const CREATE_STUDENT = gql `
       }
   }
 `;
+
+
+export const CREATE_TEACHER = gql `
+  mutation CreateUserTeacherForm($input: inputTeacher) {
+    createTeacher(input: $input){
+      firstname
+      lastname
+      password
+      gender
+      email
+    }
+  }
+`;

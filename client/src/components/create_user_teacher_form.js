@@ -7,8 +7,12 @@ import './styles/create_user_form.css';
 //Hooks
 import { useHandleInputChange } from '../hooks/useHandleInputChange';
 
+//Mutations
+import { CREATE_TEACHER } from '../apolloclient/mutations';
+
 const CreateUserTeacherForm = () => {
     const [input, handleInputChange] = useHandleInputChange();
+    const [createTeacher, {data}] = useMutation(CREATE_TEACHER);
 
     return (
         <div className='register-form-subcontainer'>
@@ -16,7 +20,7 @@ const CreateUserTeacherForm = () => {
                 onSubmit={
                     (e) => {
                         e.preventDefault();
-                        console.log(input);
+                        createTeacher({variables: {input: input}});
                     }
                 }
             >
