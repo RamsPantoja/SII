@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 //styles
-import './styles/create_user_student_form.css';
+import './styles/create_user_form.css';
 //Hooks
 import { useHandleInputChange } from '../hooks/useHandleInputChange';
 //Mutations
@@ -44,7 +44,7 @@ const CreateUserStudentForm = () => {
                         <option value='MUJER'>MUJER</option>
                     </select>
                 </div>
-                <button type='submit' className='button-submit'>Enviar</button>
+                <button type='submit' className='button-submit'>Crear</button>
             </form>
         </div>
     )

@@ -9,6 +9,7 @@ import MainPage from './page/main_page';
 import StudentLogin from './page/login_student';
 import TeacherLogin from './page/login_teacher';
 import CreateUserStudent from './page/create_user_student';
+import CreateUserTeacher from './page/create_user_teacher';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8200/graphql',
@@ -28,7 +29,7 @@ const App = () => {
             <Route exact path='/student/login' component={StudentLogin}/>
             <Route exact path='/teacher/login' component={TeacherLogin}/>
             <Route exact path='/student/register' component={CreateUserStudent}/>
-            <Route exact path='/teacher/register'/>
+            <Route exact path='/teacher/register' component={CreateUserTeacher}/>
           </Switch>
         </div>
       </Router>

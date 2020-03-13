@@ -13,7 +13,7 @@ const TeacherLogin = () => {
                 <img src='./img/user.png' height='100px' width='100px'/>
                 <h1>Profesor</h1>
                 <LoginComponentWithHook/>
-                <spa>No tienes una cuenta?<Link className='link-to-create-user' to='/teacher/register'>Crear Cuenta</Link></spa>
+                <span>No tienes una cuenta?<Link className='link-to-create-user' to='/teacher/register'>Crear Cuenta</Link></span>
             </div>
         </div>
     )
