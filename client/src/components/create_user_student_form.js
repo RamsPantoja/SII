@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 //styles
 import './styles/create_user_form.css';
@@ -10,14 +10,36 @@ import { CREATE_STUDENT } from '../apolloclient/mutations';
 const CreateUserStudentForm = () => {
     const [input, handleInputChange] = useHandleInputChange();
     const [createStudent, {data}] = useMutation(CREATE_STUDENT);
+    const [err, setErr] = useState(false);
+
+    const registerData = input;
+
+    let inputErr = err ? <span>Todos los campos son obligatorios</span> : '';
 
     return(
         <div className='register-form-subcontainer'>
             <form className='register-form-subcontainer-grid'
                 onSubmit={e => {
                     e.preventDefault();
-                    createStudent({variables: {input: input}})
+                    //destructuring input.
+                    const {firstname, lastname, username, matricula, password, email, gender} = registerData;
+                    //validacion de los campos
+                    if( 
+                        firstname === '' || 
+                        lastname === '' || 
+                        username === '' || 
+                        matricula === '' || 
+                        password === '' || 
+                        email === '' || 
+                        gender === '' ||
+                        registerData === {}
+                        ) {
+                        setErr(true);
+                        return;
+                    }
+        
                 }}>
+                <div>{inputErr}</div>
                 <div>
                     <label>Nombre<input className='input-register' type='text' name='firstname' onChange={handleInputChange}/></label>
                 </div>

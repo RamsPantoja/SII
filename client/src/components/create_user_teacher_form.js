@@ -21,9 +21,7 @@ const CreateUserTeacherForm = () => {
                     (e) => {
                         e.preventDefault();
                         createTeacher({variables: {input: input}});
-                    }
-                }
-            >
+                    }}>
                 <div>
                     <label>Nombre<input type='text' className='input-register' name='firstname' onChange={handleInputChange}/></label>
                 </div>
