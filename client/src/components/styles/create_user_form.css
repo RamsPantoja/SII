@@ -51,3 +51,16 @@
     font-family: 'Roboto Mono';
     border-radius: 1px;
 }
+
+.span-err {
+    display: block;
+    margin: 0px;
+    background: rgb(242,72,75);
+    height: 20px;
+    width: 400px;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    color: #FFFFFF;
+    text-align: center;
+}

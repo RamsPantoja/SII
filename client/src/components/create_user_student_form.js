@@ -3,64 +3,74 @@ import { useMutation } from '@apollo/react-hooks';
 //styles
 import './styles/create_user_form.css';
 //Hooks
-import { useHandleInputChange } from '../hooks/useHandleInputChange';
+import useFormValidation from '../hooks/useFormValidation';
 //Mutations
 import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
-    const [input, handleInputChange] = useHandleInputChange();
+    //const [input, handleInputChange] = useHandleInputChange();
+    const [state, disable, handleOnChange ] = useFormValidation();
     const [createStudent, {data}] = useMutation(CREATE_STUDENT);
     const [err, setErr] = useState(false);
 
-    const registerData = input;
+    const stateSchema = {
+        firstname: { value:'', error: ''},
+        lastname: { value: '', error: ''},
+        username: { value: '', error: ''},
+        email: { value: '', error: ''},
+        matricula: { value: '', error: ''},
+        password: { value: '', error: ''},
+        gender: { value: '', error: ''}
+    }
 
-    let inputErr = err ? <span>Todos los campos son obligatorios</span> : '';
+    const validationSchema = {
+        firstname: {
+            required: true,
+            validator: {
+                regEx: /^[a-zA-Z]+$/,
+                error: 'Invalid first name format'
+            }
+        },
+        lastname: {
+            required: true,
+            validator: {
+                regEx: /^[a-zA-Z]+$/,
+                error: 'Invalid last name format'
+            }
+        },
+        user
+    }
+
+    let inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
 
     return(
         <div className='register-form-subcontainer'>
             <form className='register-form-subcontainer-grid'
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
-                    //destructuring input.
-                    const {firstname, lastname, username, matricula, password, email, gender} = registerData;
-                    //validacion de los campos
-                    if( 
-                        firstname === '' || 
-                        lastname === '' || 
-                        username === '' || 
-                        matricula === '' || 
-                        password === '' || 
-                        email === '' || 
-                        gender === '' ||
-                        registerData === {}
-                        ) {
-                        setErr(true);
-                        return;
-                    }
-        
                 }}>
                 <div>{inputErr}</div>
                 <div>
-                    <label>Nombre<input className='input-register' type='text' name='firstname' onChange={handleInputChange}/></label>
+                    <label>Nombre<input className='input-register' type='text' name='firstname' onChange={handleOnChange}/></label>
                 </div>
                 <div>
-                    <label>Apellido<input className='input-register' type='text' name='lastname' onChange={handleInputChange}/></label> 
+                    <label>Apellido<input className='input-register' type='text' name='lastname' onChange={handleOnChange}/></label> 
                 </div>
                 <div>
-                    <label>Matricula<input className='input-register' type='text' name='matricula' onChange={handleInputChange}/></label>
+                    <label>Matricula<input className='input-register' type='text' name='matricula' onChange={handleOnChange}/></label>
                 </div>
                 <div>
-                    <label>Nombre de Usuario<input className='input-register' type='text' name='username' onChange={handleInputChange}/></label>
+                    <label>Nombre de Usuario<input className='input-register' type='text' name='username' onChange={handleOnChange}/></label>
                 </div>
                 <div>
-                    <label>Password<input className='input-register' type='password' name='password' onChange={handleInputChange}/></label>
+                    <label>Password<input className='input-register' type='password' name='password' onChange={handleOnChange}/></label>
                 </div>
                 <div>
-                    <label>Email<input className='input-register' type='email' name='email' onChange={handleInputChange}/></label> 
+                    <label>Email<input className='input-register' type='email' name='email' onChange={handleOnChange}/></label> 
                 </div>
                 <div>
                     <label>Sexo</label>
-                    <select className='input-select-gender' name='gender' onChange={handleInputChange}>
+                    <select className='input-select-gender' name='gender' onChange={handleOnChange}>
                         <option value=''>Elegir...</option>
                         <option value='HOMBRE'>HOMBRE</option>
                         <option value='MUJER'>MUJER</option>
