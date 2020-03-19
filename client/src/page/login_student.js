@@ -14,7 +14,7 @@ const StudentLogin = () => {
                 <img src='./img/graduated.png' height='100px' width='100px'></img>
                 <h1>Alumno</h1>
                 <LoginComponentWithHook/>
-                <span>No tienes una cuenta?<Link className='link-to-create-user' to='/student/register'>Crear Cuenta</Link></span>
+                <span className='container-link'>No tienes una cuenta?<Link className='link-to-create-user' to='/student/register'>Crear Cuenta</Link></span>
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
     //const [input, handleInputChange] = useHandleInputChange();
-    const [state, disable, handleOnChange ] = useFormValidation();
+    const [state, disable, handleOnChange ] = useFormValidation(stateSchema, validationSchema);
     const [createStudent, {data}] = useMutation(CREATE_STUDENT);
     const [err, setErr] = useState(false);
 
@@ -40,7 +40,10 @@ const CreateUserStudentForm = () => {
         },
         username: {
             required: true,
-            regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/
+            validator: {
+                regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/,
+                error: 'Invalid user name format'
+            }
         }
     }
 
