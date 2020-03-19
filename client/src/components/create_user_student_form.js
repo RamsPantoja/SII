@@ -27,18 +27,21 @@ const CreateUserStudentForm = () => {
         firstname: {
             required: true,
             validator: {
-                regEx: /^[a-zA-Z]+$/,
+                regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
                 error: 'Invalid first name format'
             }
         },
         lastname: {
             required: true,
             validator: {
-                regEx: /^[a-zA-Z]+$/,
+                regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
                 error: 'Invalid last name format'
             }
         },
-        user
+        username: {
+            required: true,
+            regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/
+        }
     }
 
     let inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
