@@ -19,6 +19,7 @@
     transform: scale(1);
     transition: 0.1s ease;
     cursor: pointer;
+    outline: none;
 }
 
 .newStyle-button:hover {

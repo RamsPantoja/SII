@@ -5,13 +5,12 @@ import { useMutation } from '@apollo/react-hooks';
 import './styles/create_user_form.css';
 
 //Hooks
-import { useHandleInputChange } from '../hooks/useHandleInputChange';
+
 
 //Mutations
 import { CREATE_TEACHER } from '../apolloclient/mutations';
 
 const CreateUserTeacherForm = () => {
-    const [input, handleInputChange] = useHandleInputChange();
     const [createTeacher, {data}] = useMutation(CREATE_TEACHER);
 
     return (
@@ -20,23 +19,22 @@ const CreateUserTeacherForm = () => {
                 onSubmit={
                     (e) => {
                         e.preventDefault();
-                        createTeacher({variables: {input: input}});
                     }}>
                 <div>
-                    <label>Nombre<input type='text' className='input-register' name='firstname' onChange={handleInputChange}/></label>
+                    <label>Nombre<input type='text' className='input-register' name='firstname' /></label>
                 </div>
                 <div>
-                    <label>Apellido<input type='text' className='input-register' name='lastname' onChange={handleInputChange}/></label>
+                    <label>Apellido<input type='text' className='input-register' name='lastname' /></label>
                 </div>
                 <div>
-                    <label>Password<input type='password' className='input-register' name='password' onChange={handleInputChange}/></label>
+                    <label>Password<input type='password' className='input-register' name='password' /></label>
                 </div>
                 <div>
-                    <label>Email<input type='email' className='input-register' name='email' onChange={handleInputChange}/></label>
+                    <label>Email<input type='email' className='input-register' name='email' /></label>
                 </div>
                 <div>
                     <label>Sexo</label>
-                    <select className='input-select-gender' name='gender' onChange={handleInputChange}>
+                    <select className='input-select-gender' name='gender' >
                         <option value=''>Elegir...</option>
                         <option value='HOMBRE'>HOMBRE</option>
                         <option value='MUJER'>MUJER</option>

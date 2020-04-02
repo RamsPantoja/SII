@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 const typeDefs = gql `
     type Student {
         id: ID
-        matricula: String
+        enrollment: String
         username: String
         password: String
         firstname: String
@@ -30,7 +30,7 @@ const typeDefs = gql `
 
     input inputStudent {
         id: ID
-        matricula: String!
+        enrollment: String!
         username: String!
         password: String!
         firstname: String!

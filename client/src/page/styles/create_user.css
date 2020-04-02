@@ -10,7 +10,8 @@
 
 
 .register-form-container {
-    padding: 30px;
+    padding-top: 30px;
+    padding-left: 50px;
     grid-area: form;
 }
 
@@ -19,7 +20,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr;
     grid-template-areas:
         "banner banner form form form" ;
 }

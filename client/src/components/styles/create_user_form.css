@@ -11,24 +11,31 @@
     grid-gap: 15px;
     
 }
-
+.label-register {
+    display: inline-block;
+}
 .input-register {
     margin: 5px 0px;
     display: block;
-    padding: 5px;
+    padding: 8px;
     height: 20px;
     width: 250px;
-    border: 1px solid rgb(102,169,221);
-    color:#000000;    
-    border-radius: 2px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    color: #000000;    
+    border-radius: 3px;
     font-weight: bolder;
+    border: none;
+    background-color: rgb(240,242,245);
     font-family: 'Roboto Mono';
+    outline: none;
 }
 
 .button-submit {
     display: block;
     justify-self: left;
     padding: 5px;
+    border-radius: 3px;
     background-color: rgb(26,80,131);
     border: none;
     color: #FFFFFF;
@@ -36,6 +43,7 @@
     transform: scale(1);
     transition: 0.1s ease;
     cursor: pointer;
+    outline: none;
 }   
 
 .button-submit:hover {
@@ -44,13 +52,21 @@
 }
 
 .input-select-gender {
-    border: 1px solid rgb(102,169,221);
+    border: none;
+    background-color: rgb(240,242,245);
     display: block;
     padding: 5px;
     margin: 5px 0px;
     font-family: 'Roboto Mono';
-    border-radius: 1px;
+    border-radius: 3px;
+    outline: none;
 }
+
+.input-register:focus {
+    padding: 6.5px;
+    border: 1.5px rgb(127,138,167) solid;
+}
+
 
 .span-err {
     display: block;

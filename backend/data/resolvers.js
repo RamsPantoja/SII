@@ -38,7 +38,7 @@ export const resolvers = {
         },
         createStudent: (root, {input}) => {
             const newStudent = new Students({
-                matricula: input.matricula,
+                enrollment: input.enrollment,
                 username: input.username,
                 password: input.password,
                 firstname: input.firstname,

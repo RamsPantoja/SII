@@ -4,48 +4,14 @@ import { useMutation } from '@apollo/react-hooks';
 import './styles/create_user_form.css';
 //Hooks
 import useFormValidation from '../hooks/useFormValidation';
+import { stateSchema, validationSchema } from '../hooks/handleInputChange';
 //Mutations
 import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
-    //const [input, handleInputChange] = useHandleInputChange();
     const [state, disable, handleOnChange ] = useFormValidation(stateSchema, validationSchema);
     const [createStudent, {data}] = useMutation(CREATE_STUDENT);
     const [err, setErr] = useState(false);
-
-    const stateSchema = {
-        firstname: { value:'', error: ''},
-        lastname: { value: '', error: ''},
-        username: { value: '', error: ''},
-        email: { value: '', error: ''},
-        matricula: { value: '', error: ''},
-        password: { value: '', error: ''},
-        gender: { value: '', error: ''}
-    }
-
-    const validationSchema = {
-        firstname: {
-            required: true,
-            validator: {
-                regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
-                error: 'Invalid first name format'
-            }
-        },
-        lastname: {
-            required: true,
-            validator: {
-                regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
-                error: 'Invalid last name format'
-            }
-        },
-        username: {
-            required: true,
-            validator: {
-                regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/,
-                error: 'Invalid user name format'
-            }
-        }
-    }
 
     let inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
 
@@ -57,25 +23,25 @@ const CreateUserStudentForm = () => {
                 }}>
                 <div>{inputErr}</div>
                 <div>
-                    <label>Nombre<input className='input-register' type='text' name='firstname' onChange={handleOnChange}/></label>
+                    <input className='input-register' placeholder='Nombre' type='text' name='firstname' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Apellido<input className='input-register' type='text' name='lastname' onChange={handleOnChange}/></label> 
+                    <input className='input-register' placeholder='Apellido' type='text' name='lastname' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Matricula<input className='input-register' type='text' name='matricula' onChange={handleOnChange}/></label>
+                    <input className='input-register' placeholder='Matricula' type='text' name='enrollment' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Nombre de Usuario<input className='input-register' type='text' name='username' onChange={handleOnChange}/></label>
+                    <input className='input-register' placeholder='Usuario' type='text' name='username' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Password<input className='input-register' type='password' name='password' onChange={handleOnChange}/></label>
+                    <input className='input-register' placeholder='Password' type='password' name='password' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Email<input className='input-register' type='email' name='email' onChange={handleOnChange}/></label> 
+                    <input className='input-register' placeholder='Email' type='email' name='email' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label>Sexo</label>
+                    <label className='label-register'>Sexo</label>
                     <select className='input-select-gender' name='gender' onChange={handleOnChange}>
                         <option value=''>Elegir...</option>
                         <option value='HOMBRE'>HOMBRE</option>

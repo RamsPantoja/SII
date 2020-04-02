@@ -9,7 +9,7 @@ mongoose.connect(MongoUrl, {useUnifiedTopology: true, useNewUrlParser: true});
 // Estructura del schema para la base de datos.
 
 const studentSchema = new mongoose.Schema({
-    matricula: String,
+    enrollment: String,
     username: String,
     password: String,
     firstname: String,
