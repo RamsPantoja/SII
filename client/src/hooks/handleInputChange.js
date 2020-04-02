@@ -5,6 +5,7 @@ export const stateSchema = {
     email: { value: '', error: ''},
     enrollment: { value: '', error: ''},
     password: { value: '', error: ''},
+    confirmpassword: { value: '', error: ''},
     gender: { value: '', error: ''}
 }
 
@@ -48,6 +49,13 @@ export const validationSchema = {
         required: true
     },
     password: {
+        required: true,
+        validator: {
+            regEx: /^[\w*]{6,}$/,
+            error: 'Invalid Password'
+        }
+    },
+    confirmpassword: {
         required: true,
         validator: {
             regEx: /^[\w*]{6,}$/,

@@ -20,6 +20,8 @@ const CreateUserStudentForm = () => {
             <form className='register-form-subcontainer-grid'
                 onSubmit={(e) => {
                     e.preventDefault();
+                    
+                    //createStudent({variables:{input: state }})
                 }}>
                 <div>{inputErr}</div>
                 <div>
@@ -38,14 +40,16 @@ const CreateUserStudentForm = () => {
                     <input className='input-register' placeholder='Password' type='password' name='password' onChange={handleOnChange}/>
                 </div>
                 <div>
+                    <input className='input-register' placeholder='Confirmar Password' type='password' name='confirmpassword' onChange={handleOnChange}/>
+                </div>
+                <div>
                     <input className='input-register' placeholder='Email' type='email' name='email' onChange={handleOnChange}/>
                 </div>
                 <div>
-                    <label className='label-register'>Sexo</label>
                     <select className='input-select-gender' name='gender' onChange={handleOnChange}>
-                        <option value=''>Elegir...</option>
-                        <option value='HOMBRE'>HOMBRE</option>
-                        <option value='MUJER'>MUJER</option>
+                        <option value=''>Sexo</option>
+                        <option value='MASCULINO'>MASCULINO</option>
+                        <option value='FEMENINO'>FEMENINO</option>
                     </select>
                 </div>
                 <button type='submit' className='button-submit'>Crear</button>

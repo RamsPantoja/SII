@@ -24,8 +24,8 @@ const typeDefs = gql `
     }
 
     enum genderUser {
-        MUJER
-        HOMBRE
+        FEMENINO
+        MASCULINO
     }
 
     input inputStudent {

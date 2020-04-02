@@ -20,8 +20,12 @@ const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
             const isInputFielRequired = validationSchema[key].required;
             const stateValue = state[key].value;
             const stateError = state[key].error;
+            const password = state.password.value;
+            const confirmPassword = state.confirmpassword.value;
 
-            return ( isInputFielRequired && !stateValue ) || stateError;
+
+
+            return ( isInputFielRequired && !stateValue ) || ( password !== confirmPassword ) || stateError;
         });
 
         return hasErrorInState;
