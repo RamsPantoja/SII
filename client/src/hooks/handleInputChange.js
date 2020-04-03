@@ -13,36 +13,36 @@ export const validationSchema = {
     firstname: {
         required: true,
         validator: {
-            regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
-            error: 'Invalid first name format'
+            regEx: /^[A-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
         }
     },
     lastname: {
         required: true,
         validator: {
-            regEx: /^[A-Z]([a-zA-Z\.\s][^\d]{2,})+[a-zA-Z]$/,
-            error: 'Invalid last name format'
+            regEx: /^[A-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            error: 'No debe contener espacios al final, caracteres especiales, numeros.'
         }
     },
     username: {
         required: true,
         validator: {
             regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/,
-            error: 'Invalid user name format'
+            error: 'Maximo 20 digitos. No debe contener espacios, caracteres especiales.'
         }
     },
     enrollment: {
         required: true,
         validator: {
             regEx:/^[0-9]{7,7}[A-Z]{1}$/,
-            error: 'Invalid student enrollment format'
+            error: 'Debe contener 8 digitos.'
         }
     },
     gender: {
         required: true,
         validator: {
             regEx: /^[A-Z]+$/,
-            error: 'Invalid value for gender'
+            error: 'Elige una opcion.'
         }
     },
     email: {
@@ -51,15 +51,15 @@ export const validationSchema = {
     password: {
         required: true,
         validator: {
-            regEx: /^[\w*]{6,}$/,
-            error: 'Invalid Password'
+            regEx: /^[\w.-]{6,}$/,
+            error: 'Minimo 6 digitos, sin caracteres especiales.'
         }
     },
     confirmpassword: {
         required: true,
         validator: {
-            regEx: /^[\w*]{6,}$/,
-            error: 'Invalid Password'
+            regEx: /^[\w]{6,}$/,
+            error: 'Minimo 6 digitos, sin caracteres especiales.'
         }
     }
 }
