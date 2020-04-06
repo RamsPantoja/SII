@@ -23,8 +23,6 @@ const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
             const password = state.password.value;
             const confirmPassword = state.confirmpassword.value;
 
-
-
             return ( isInputFielRequired && !stateValue ) || ( password !== confirmPassword ) || stateError;
         });
 
@@ -36,8 +34,8 @@ const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
             setIsDirty(true);
             const name = e.target.name;
             const value = e.target.value;
-                
             let error = '';
+
             if (validationSchema[name].required) {
                 if (!value) {
                     error = 'Campo obligatorio.'
@@ -52,7 +50,7 @@ const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
                         error = validationSchema[name].validator.error;
                     }
             }
-                
+
             setState((prevState) => ({
                 ...prevState,
                 [name]: { value, error}

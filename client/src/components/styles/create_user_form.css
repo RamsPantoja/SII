@@ -83,6 +83,20 @@
     outline: none;
 }
 
+.input-select-gender-error {
+    border: none;
+    background-color: rgb(240,242,245);
+    display: block;
+    padding: 6.5px;
+    border: 1.5px rgb(189,84,82) solid;
+    margin: 5px 0px;
+    font-family: 'Roboto Mono';
+    border-radius: 3px;
+    font-family: 'Roboto Mono';
+    font-weight: bolder;
+    outline: none;
+}
+
 .input-register:focus {
     padding: 6.5px;
     border: 1.5px rgb(127,138,167) solid;

@@ -21,7 +21,7 @@ export const validationSchema = {
         required: true,
         validator: {
             regEx: /^[A-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
-            error: 'No debe contener espacios al final, caracteres especiales, numeros.'
+            error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
         }
     },
     username: {
@@ -51,15 +51,11 @@ export const validationSchema = {
     password: {
         required: true,
         validator: {
-            regEx: /^[\w.-]{6,}$/,
+            regEx: /^[\w.-\s]{6,}$/,
             error: 'Minimo 6 digitos, sin caracteres especiales.'
         }
     },
     confirmpassword: {
-        required: true,
-        validator: {
-            regEx: /^[\w]{6,}$/,
-            error: 'Minimo 6 digitos, sin caracteres especiales.'
-        }
+        required: true
     }
 }
