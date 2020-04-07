@@ -4,19 +4,19 @@ import { useMutation } from '@apollo/react-hooks';
 import './styles/create_user_form.css';
 //Hooks
 import useFormValidation from '../hooks/useFormValidation';
-import { stateSchema, validationSchema } from '../hooks/handleInputChange';
+import { stateSchemaStudent, validationSchemaStudent } from '../hooks/handleInputChange';
 //Mutations
 import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
     //Hook de validacion del Formulario.
-    const [state, disable, handleOnChange ] = useFormValidation(stateSchema, validationSchema);
+    const [state, disable, handleOnChange ] = useFormValidation(stateSchemaStudent, validationSchemaStudent);
     const [createStudent, {data}] = useMutation(CREATE_STUDENT);
     const [err, setErr] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false)
 
-    let inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
-    let confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide</span> : null;
+    const inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
+    const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
     
     const { firstname, lastname, enrollment, email, password, gender, username, confirmpassword } = state;
 
@@ -34,7 +34,7 @@ const CreateUserStudentForm = () => {
     const errorEnrollment = enrollment.error ? 'input-register-error' : 'input-register';
     const errorEmail = email.error ? 'input-register-error' : 'input-register';
     const errorPassword = password.error ? 'input-register-error' : 'input-register';
-    const errorConfirmPassword = confirmpassword.error ? 'input-register-error' : 'input-register';
+    const errorConfirmPassword = confirmpassword.error || confirmPasswordError ? 'input-register-error' : 'input-register';
     const errorGender = gender.error ? 'input-select-gender-error' : 'input-select-gender';
     const errorUsername = username.error ? 'input-register-error' : 'input-register';
 
@@ -89,11 +89,11 @@ const CreateUserStudentForm = () => {
                     {errorUsernameSpan}
                 </div>
                 <div>
-                    <input className={errorPassword} placeholder='Password' type='password' name='password' value={password.value} onChange={handleOnChange}/>
+                    <input className={errorPassword} placeholder='Contraseña' type='password' name='password' value={password.value} onChange={handleOnChange}/>
                     {errorPasswordSpan}
                 </div>
                 <div>
-                    <input className={errorConfirmPassword} placeholder='Confirmar Password' type='password' value={confirmpassword.value} name='confirmpassword' onChange={handleOnChange}/>
+                    <input className={errorConfirmPassword} placeholder='Confirmar contraseña' type='password' value={confirmpassword.value} name='confirmpassword' onChange={handleOnChange}/>
                     {confirmPasswordErrorSpan || errorConfirmPasswordSpan}
                 </div>
                 <div>
