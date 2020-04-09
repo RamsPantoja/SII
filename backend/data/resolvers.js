@@ -33,13 +33,12 @@ export const resolvers = {
                 newTeacher.save((error) => {
                     if(error) rejects(error);
                     else resolve(newTeacher);
-                })
-            })
+                });
+            });
         },
         createStudent: (root, {input}) => {
             const newStudent = new Students({
                 enrollment: input.enrollment,
-                username: input.username,
                 password: input.password,
                 firstname: input.firstname,
                 lastname: input.lastname,

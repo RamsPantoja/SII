@@ -10,7 +10,6 @@ mongoose.connect(MongoUrl, {useUnifiedTopology: true, useNewUrlParser: true});
 
 const studentSchema = new mongoose.Schema({
     enrollment: String,
-    username: String,
     password: String,
     firstname: String,
     lastname: String,

@@ -10,7 +10,7 @@ const LoginComponentWithHook = () => {
         <Fragment>
             <form className='form-container'>
                 <div>
-                    <input className='input-login' type="text" placeholder='User' name='username'/>
+                    <input className='input-login' type="text" placeholder='Email' name='username'/>
                 </div>
                 <div>
                     <input className='input-login' type="password" placeholder='Password' name="password"/>

@@ -3,15 +3,14 @@ import gql from 'graphql-tag';
 
 export const CREATE_STUDENT = gql `
   mutation CreateUserStudentForm($input: inputStudent) {
-      createStudent(input: $input) {
-        enrollment
-        username
-        email
-        gender
-        firstname
-        lastname
-        password
-      }
+    createStudent(input: $input) {
+      enrollment
+      email
+      gender
+      firstname
+      lastname
+      password
+    }
   }
 `;
 

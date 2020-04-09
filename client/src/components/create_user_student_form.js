@@ -18,7 +18,7 @@ const CreateUserStudentForm = () => {
     const inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
     const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
     
-    const { firstname, lastname, enrollment, email, password, gender, username, confirmpassword } = state;
+    const { firstname, lastname, enrollment, email, password, gender, confirmpassword } = state;
 
     useEffect(() => {
         if (confirmpassword.value !== password.value) {
@@ -36,7 +36,6 @@ const CreateUserStudentForm = () => {
     const errorPassword = password.error ? 'input-register-error' : 'input-register';
     const errorConfirmPassword = confirmpassword.error || confirmPasswordError ? 'input-register-error' : 'input-register';
     const errorGender = gender.error ? 'input-select-gender-error' : 'input-select-gender';
-    const errorUsername = username.error ? 'input-register-error' : 'input-register';
 
     //Agrega un Span para mostrarle al Usuario cual es el error en la etiqueta Input.
     const errorFirstnameSpan = firstname.error ? <span className='span-error-input'>{firstname.error}</span> : '';
@@ -46,7 +45,6 @@ const CreateUserStudentForm = () => {
     const errorPasswordSpan = password.error ? <span className='span-error-input'>{password.error}</span> : '';
     const errorConfirmPasswordSpan = confirmpassword.error ? <span className='span-error-input'>{confirmpassword.error}</span> : '';
     const errorGenderSpan = gender.error ? <span className='span-error-input'>{gender.error}</span> : '';
-    const errorUsernameSpan = username.error ? <span className='span-error-input'>{username.error}</span> : '';
 
     return(
         <div className='register-form-subcontainer'>
@@ -67,8 +65,7 @@ const CreateUserStudentForm = () => {
                         enrollment: enrollment.value,
                         email: email.value,
                         password: password.value,
-                        gender: gender.value,
-                        username: username.value
+                        gender: gender.value
                     }}});
                 }}>
                 <div>{inputErr}</div>
@@ -83,10 +80,6 @@ const CreateUserStudentForm = () => {
                 <div>
                     <input className={errorEnrollment} placeholder='Matricula' type='text' name='enrollment' value={enrollment.value} onChange={handleOnChange}/>
                     {errorEnrollmentSpan}
-                </div>
-                <div>
-                    <input className={errorUsername} placeholder='Usuario' type='text' name='username' value={username.value} onChange={handleOnChange}/>
-                    {errorUsernameSpan}
                 </div>
                 <div>
                     <input className={errorPassword} placeholder='Contraseña' type='password' name='password' value={password.value} onChange={handleOnChange}/>

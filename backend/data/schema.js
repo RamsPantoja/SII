@@ -4,7 +4,6 @@ const typeDefs = gql `
     type Student {
         id: ID
         enrollment: String
-        username: String
         password: String
         firstname: String
         lastname: String
@@ -31,7 +30,6 @@ const typeDefs = gql `
     input inputStudent {
         id: ID
         enrollment: String!
-        username: String!
         password: String!
         firstname: String!
         lastname: String!

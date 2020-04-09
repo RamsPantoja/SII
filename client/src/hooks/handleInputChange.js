@@ -1,7 +1,6 @@
 export const stateSchemaStudent = {
     firstname: { value:'', error: ''},
     lastname: { value: '', error: ''},
-    username: { value: '', error: ''},
     email: { value: '', error: ''},
     enrollment: { value: '', error: ''},
     password: { value: '', error: ''},
@@ -22,22 +21,15 @@ export const validationSchemaStudent = {
     firstname: {
         required: true,
         validator: {
-            regEx: /^[A-Za_zÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            regEx: /^[a-zA-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
             error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
         }
     },
     lastname: {
         required: true,
         validator: {
-            regEx: /^[A-Za_zÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            regEx: /^[a-zA-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
             error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
-        }
-    },
-    username: {
-        required: true,
-        validator: {
-            regEx: /^[a-zA-Z0-9]{1}[\w-]{2,18}[a-zA-Z0-9]{1}$/,
-            error: 'Maximo 20 digitos. No debe contener espacios, caracteres especiales.'
         }
     },
     enrollment: {
@@ -73,14 +65,14 @@ export const validationSchemaTeacher = {
     firstname: {
         required: true,
         validator: {
-            regEx: /^[A-Za_zÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            regEx: /^[a-zA-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
             error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
         }
     },
     lastname: {
         required: true,
         validator: {
-            regEx: /^[A-Za_zÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
+            regEx: /^[a-zA-ZÁÉÍÓÚñáéíóúÑ]+[A-Za-zÁÉÍÓÚñáéíóúÑ\'.\s]*[A-Za-zÁÉÍÓÚñáéíóúÑ.]$/,
             error: 'No debe contener espacios al principio/final, caracteres especiales, numeros.'
         }
     },
