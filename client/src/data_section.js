@@ -2,7 +2,7 @@ const data = [
     {
         "id": 1,
         "img": "./img/graduated.png",
-        "description": "Con su matricula y clave proporcionada en la secretaria académica, conoce tus tendencias de calificaciones tanto parciales como departamentales.",
+        "description": "Consulta tus tendencias de calificaciones tanto parciales como departamentales, asi como documentacion sobre cursos.",
         "button_in": "Entrar",
         "section": "Alumno",
         "to": "/student"

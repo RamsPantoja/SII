@@ -1,19 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
+const useFormValidation = (stateSchema, validationSchema = {}, disableSchema, callback) => {
     const [state, setState] = useState(stateSchema);
-    const [disable, setDisable] = useState(true);
+    const [disable, setDisable] = useState(disableSchema);
     const [isDirty, setIsDirty] = useState(false);
-
-    useEffect(() => {
-        setDisable(true);
-    }, []);
-
-    useEffect(() => {
-        if(isDirty) {
-            setDisable(validateState());
-        }
-    }, [state, isDirty]);
 
     const validateState = useCallback(() => {
         const hasErrorInState = Object.keys(validationSchema).some( key => {
@@ -28,6 +18,29 @@ const useFormValidation = (stateSchema, validationSchema = {}, callback) => {
 
         return hasErrorInState;
     }, [state, validationSchema ]);
+
+    useEffect(() => {
+        setDisable(() => ({
+            ...disableSchema,
+            status: true
+        }));
+    }, [disableSchema]);
+
+    useEffect(() => {
+        if(isDirty) {
+            setDisable(() => ({
+                ...disableSchema,
+                status: validateState()
+            }));
+        }
+
+        if (validateState()) {
+            setDisable(() => ({
+                ...disableSchema,
+                error: 'Todos los campos son obligatorios.'
+            }))
+        }
+    }, [state, isDirty, validateState, disableSchema]);
 
     const handleOnChange = useCallback(
         (e) => {

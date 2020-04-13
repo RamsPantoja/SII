@@ -12,7 +12,7 @@ import { stateSchemaTeacher, validationSchemaTeacher } from '../hooks/handleInpu
 import { CREATE_TEACHER } from '../apolloclient/mutations';
 
 const CreateUserTeacherForm = () => {
-    const [createTeacher, {data}] = useMutation(CREATE_TEACHER);
+    const [createTeacher, {data}] = useMutation(CREATE_TEACHER, {errorPolicy: 'all'});
     const [state, disable, handleOnChange] = useFormValidation(stateSchemaTeacher, validationSchemaTeacher);
     const [err, setErr] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
@@ -28,7 +28,7 @@ const CreateUserTeacherForm = () => {
         } else {
             setConfirmPasswordError(false);
         }
-    });
+    },[confirmpassword.value, password.value]);
 
     //Cambia el valor del className que se encuentra en las etiquetas Input, si hay error son rojas de lo contrario no.
     const errorFirstname = firstname.error ? 'input-register-error' : 'input-register';

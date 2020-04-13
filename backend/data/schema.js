@@ -54,7 +54,7 @@ const typeDefs = gql `
     }
 
     type Mutation {
-        createStudent(input: inputStudent): Student
+        createStudent(input: inputStudent): String
         createTeacher(input: inputTeacher): Teacher
     }
 

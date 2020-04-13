@@ -36,8 +36,17 @@ export const resolvers = {
                 });
             });
         },
-        createStudent: (root, {input}) => {
-            const newStudent = new Students({
+        createStudent: async (root, {input}) => {
+            const emailAlreadyExist = await Students.findOne({
+                email: input.email
+            });
+
+            if (emailAlreadyExist) {
+                throw new Error('El email ya existe!');
+            }
+            
+            
+            const newStudent = await new Students({
                 enrollment: input.enrollment,
                 password: input.password,
                 firstname: input.firstname,
@@ -45,16 +54,9 @@ export const resolvers = {
                 email: input.email,
                 img: input.img,
                 gender:input.gender
-            });
-
-            newStudent.id = newStudent._id;
-
-            return new Promise((resolve, object) => {
-                newStudent.save((err) => {
-                    if (err) rejects(err);
-                    else resolve(newStudent);
-                });
-            });
+            }).save();
+            
+            return "Gracias por registrarte, te hemos enviado un correo de confirmacion.";
         }
     }
 }

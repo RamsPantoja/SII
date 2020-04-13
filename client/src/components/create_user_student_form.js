@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 //styles
 import './styles/create_user_form.css';
+//components
+import Error from '../alerts/error';
 //Hooks
 import useFormValidation from '../hooks/useFormValidation';
-import { stateSchemaStudent, validationSchemaStudent } from '../hooks/handleInputChange';
+import { stateSchemaStudent, validationSchemaStudent, disableSchema } from '../hooks/handleInputChange';
 //Mutations
 import { CREATE_STUDENT } from '../apolloclient/mutations';
 
 const CreateUserStudentForm = () => {
     //Hook de validacion del Formulario.
-    const [state, disable, handleOnChange ] = useFormValidation(stateSchemaStudent, validationSchemaStudent);
-    const [createStudent, {data}] = useMutation(CREATE_STUDENT);
+    const [state, disable, handleOnChange] = useFormValidation(stateSchemaStudent, validationSchemaStudent, disableSchema);
+    const [createStudent, {data, error, loading}] = useMutation(CREATE_STUDENT, {errorPolicy: 'all'});
+    const [confirmPasswordError, setConfirmPasswordError] = useState(false);
     const [err, setErr] = useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = useState(false)
 
-    const inputErr = err ? <span className='span-err'>Todos los campos son obligatorios</span> : '';
     const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
-    
+    const errorSpan = err && disable.error? <Error error={disable.error}/> : null;
+    const errorApollo = error ? <Error error={error.message}/> : null;
     const { firstname, lastname, enrollment, email, password, gender, confirmpassword } = state;
 
     useEffect(() => {
@@ -26,7 +28,7 @@ const CreateUserStudentForm = () => {
         } else {
             setConfirmPasswordError(false);
         }
-    });
+    },[confirmpassword.value, password.value]);
     
     //Cambia el valor del className que se encuentra en las etiquetas Input, si hay error son rojas de lo contrario no.
     const errorFirstname = firstname.error ? 'input-register-error' : 'input-register';
@@ -51,15 +53,14 @@ const CreateUserStudentForm = () => {
             <form className='register-form-subcontainer-grid'
                 onSubmit={(e) => {
                     e.preventDefault();
-                    //Si falta algun campo en el formulario, retorna false y retiene la peticion.
-                    if (disable) {
+                    if (disable.status) {
                         setErr(true);
                         return false;
                     } else {
                         setErr(false);
                     }
                     //Se ejecuta el Mutation, se le pasan los valores del Input como variables y envia el formulario.
-                    createStudent({variables:{input: {
+                    createStudent({ variables: { input: {
                         firstname: firstname.value,
                         lastname: lastname.value,
                         enrollment: enrollment.value,
@@ -68,7 +69,7 @@ const CreateUserStudentForm = () => {
                         gender: gender.value
                     }}});
                 }}>
-                <div>{inputErr}</div>
+                { errorSpan || errorApollo }
                 <div>
                     <input className={errorFirstname} placeholder='Nombre' type='text' name='firstname' value={firstname.value} onChange={handleOnChange}/>
                     {errorFirstnameSpan}
@@ -101,7 +102,7 @@ const CreateUserStudentForm = () => {
                     </select>
                     {errorGenderSpan}
                 </div>
-                <button type='submit' className='button-submit'>Crear</button>
+                <button type='submit' disabled={loading} className='button-submit'>Crear</button>
             </form>
         </div>
     )

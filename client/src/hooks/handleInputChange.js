@@ -17,6 +17,10 @@ export const stateSchemaTeacher = {
     confirmpassword: { value: '', error: ''}
 }
 
+export const disableSchema = {
+    status: true,
+    error: '',
+}
 export const validationSchemaStudent = {
     firstname: {
         required: true,

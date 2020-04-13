@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
+import bcrypt, { hash } from 'bcrypt';
 
 mongoose.Promise = global.Promise;
 
@@ -8,7 +9,7 @@ mongoose.connect(MongoUrl, {useUnifiedTopology: true, useNewUrlParser: true});
 
 // Estructura del schema para la base de datos.
 
-const studentSchema = new mongoose.Schema({
+const studentSchema = new Schema({
     enrollment: String,
     password: String,
     firstname: String,
@@ -18,9 +19,26 @@ const studentSchema = new mongoose.Schema({
     gender: String
 });
 
+studentSchema.pre('save', function (next) {
+    if(!this.isModified('password')) {
+        return next();
+    }
+
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) return next(err);
+
+        bcrypt.hash(this.password, salt, (err, hash) => {
+            if (err) return next(err);
+            this.password = hash;
+            next();
+        })
+    })
+})
+
+
 export const Students = mongoose.model('Students', studentSchema);
 
-const teacherSchema = new mongoose.Schema({
+const teacherSchema = new Schema({
     firstname: String,
     lastname: String,
     password: String,
@@ -28,5 +46,21 @@ const teacherSchema = new mongoose.Schema({
     img: String,
     gender: String
 });
+
+teacherSchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        return next();
+    }
+
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) return next(err);
+
+        bcrypt.hash(this.password, salt, (err, hash) => {
+            if (err) return next(err);
+            this.password = hash;
+            next();
+        })
+    })
+})
 
 export const Teachers = mongoose.model('Teachers', teacherSchema);
