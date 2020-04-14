@@ -17,24 +17,25 @@ export const resolvers = {
     },
     
     Mutation: {
-        createTeacher: (root, {input}) => {
-            const newTeacher = new Teachers({
+        createTeacher: async (root, {input}) => {
+            const emailAlreadyExist = await Teachers.findOne({
+                email: input.email
+            });
+
+            if (emailAlreadyExist) {
+                throw new Error('El email ya existe!');
+            }
+
+            const newTeacher = await new Teachers({
                 firstname: input.firstname,
                 lastname: input.lastname,
                 password: input.password,
                 email: input.email,
                 img: input.img,
                 gender: input.gender
-            });
+            }).save();
 
-            newTeacher.id = newTeacher._id;
-
-            return new Promise((resolve, object) => {
-                newTeacher.save((error) => {
-                    if(error) rejects(error);
-                    else resolve(newTeacher);
-                });
-            });
+            return 'Gracias por registrarte, te hemos enviado un correo de confirmacion.';
         },
         createStudent: async (root, {input}) => {
             const emailAlreadyExist = await Students.findOne({

@@ -48,7 +48,7 @@ const teacherSchema = new Schema({
 });
 
 teacherSchema.pre('save', function (next) {
-    if (this.isModified('password')) {
+    if (!this.isModified('password')) {
         return next();
     }
 

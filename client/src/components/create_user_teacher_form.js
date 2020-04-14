@@ -3,22 +3,20 @@ import { useMutation } from '@apollo/react-hooks';
 
 //Styles
 import './styles/create_user_form.css';
-
+//Components
+import Error from '../alerts/error';
 //Hooks
 import useFormValidation from '../hooks/useFormValidation';
-import { stateSchemaTeacher, validationSchemaTeacher } from '../hooks/handleInputChange';
+import { stateSchemaTeacher, validationSchemaTeacher, disableSchema } from '../hooks/handleInputChange';
 
 //Mutations
 import { CREATE_TEACHER } from '../apolloclient/mutations';
 
 const CreateUserTeacherForm = () => {
-    const [createTeacher, {data}] = useMutation(CREATE_TEACHER, {errorPolicy: 'all'});
-    const [state, disable, handleOnChange] = useFormValidation(stateSchemaTeacher, validationSchemaTeacher);
+    const [createTeacher, {data, error, loading}] = useMutation(CREATE_TEACHER, {errorPolicy: 'all'});
+    const [state, disable, handleOnChange] = useFormValidation(stateSchemaTeacher, validationSchemaTeacher, disableSchema);
     const [err, setErr] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-
-    const errSpan = err ?  <span className='span-err'>Todos los campos son obligatorios</span> : null;
-    const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
 
     const { firstname, lastname, password, confirmpassword, email, gender } = state;
 
@@ -30,28 +28,30 @@ const CreateUserTeacherForm = () => {
         }
     },[confirmpassword.value, password.value]);
 
+    const errorSpan = err && disable.error ? <Error error={disable.error}/> : null;
+    const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
+    const errorApollo = error ? <Error error={error.message}/> : null;
+
     //Cambia el valor del className que se encuentra en las etiquetas Input, si hay error son rojas de lo contrario no.
-    const errorFirstname = firstname.error ? 'input-register-error' : 'input-register';
-    const errorLastname = lastname.error ? 'input-register-error' : 'input-register';
-    const errorPassword = password.error ? 'input-register-error' : 'input-register';
     const errorConfirmPassword = confirmpassword.error || confirmPasswordError ? 'input-register-error' : 'input-register';
-    const errorEmail = email.error ? 'input-register-error' : 'input-register';
     const errorGender = gender.error ? 'input-select-gender-error' : 'input-select-gender';
 
     //Agrega un Span para mostrar cual es el error en la etiqueta Input.
-    const errorFirstnameSpan = firstname.error ? <span className='span-error-input'>{firstname.error}</span> : null;
-    const errorLastnameSpan = lastname.error ? <span className='span-error-input'>{lastname.error}</span> : null;
-    const errorPasswordSpan = password.error ? <span className='span-error-input'>{password.error}</span> : null;
     const errorConfirmPasswordSpan = confirmpassword.error ? <span className='span-error-input'>{confirmpassword.error}</span> : null;
-    const errorEmailSpan = email.error ? <span className='span-error-input'>{email.error}</span> : null;
     const errorGenderSpan = gender.error ? <span className='span-error-input'>{gender.error}</span> : null;
     
+    if (error && error.networkError) {
+        return (
+            <div className='network-error'>{error.message}</div>
+        )
+    }
+
     return (
         <div className='register-form-subcontainer'>
             <form className='register-form-subcontainer-grid'
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (disable) {
+                    if (disable.status) {
                         setErr(true);
                         return false;
                     } else {
@@ -66,26 +66,28 @@ const CreateUserTeacherForm = () => {
                         gender: gender.value
                     }}});
                 }}>
-                <div>{errSpan}</div>           
                 <div>
-                    <input placeholder='Nombre' type='text' className={errorFirstname} name='firstname' value={firstname.value} onChange={handleOnChange}/>
-                    {errorFirstnameSpan}
+                    {errorSpan || errorApollo}
+                </div>           
+                <div>
+                    <input placeholder='Nombre' type='text' className={firstname.errorfield} name='firstname' value={firstname.value} onChange={handleOnChange}/>
+                    {firstname.error && <Error error={firstname.error}/>}
                 </div>
                 <div>
-                   <input placeholder='Apellido' type='text' className={errorLastname} name='lastname' value={lastname.value} onChange={handleOnChange}/>
-                   {errorLastnameSpan}
+                   <input placeholder='Apellido' type='text' className={lastname.errorfield} name='lastname' value={lastname.value} onChange={handleOnChange}/>
+                   {lastname.error && <Error error={lastname.error}/>}
                 </div>
                 <div>
-                    <input placeholder='Contraseña' type='password' className={errorPassword} name='password' value={password.value} onChange={handleOnChange}/>
-                    {errorPasswordSpan}
+                    <input placeholder='Contraseña' type='password' className={password.errorfield} name='password' value={password.value} onChange={handleOnChange}/>
+                    {password.error && <Error error={password.error}/>}
                 </div>
                 <div>
                     <input placeholder='Confirmar contraseña' type='password' className={errorConfirmPassword} name='confirmpassword' value={confirmpassword.value} onChange={handleOnChange}/>
                     {errorConfirmPasswordSpan || confirmPasswordErrorSpan}
                 </div>
                 <div>
-                    <input placeholder='Email' type='email' className={errorEmail} name='email' value={email.value} onChange={handleOnChange}/>
-                    {errorEmailSpan}
+                    <input placeholder='Email' type='email' className={email.errorfield} name='email' value={email.value} onChange={handleOnChange}/>
+                    {email.error && <Error error={email.error}/>}
                 </div>
                 <div>
                     <select className={errorGender} name='gender' value={gender.value} onChange={handleOnChange}>
@@ -95,7 +97,7 @@ const CreateUserTeacherForm = () => {
                     </select>
                     {errorGenderSpan}
                 </div>
-                <button type='submit' className='button-submit'>Crear</button>
+                <button type='submit' disabled={loading} className='button-submit'>Crear</button>
             </form>
             
         </div>

@@ -17,7 +17,7 @@ const useFormValidation = (stateSchema, validationSchema = {}, disableSchema, ca
         });
 
         return hasErrorInState;
-    }, [state, validationSchema ]);
+    }, [state, validationSchema]);
 
     useEffect(() => {
         setDisable(() => ({
@@ -37,7 +37,7 @@ const useFormValidation = (stateSchema, validationSchema = {}, disableSchema, ca
         if (validateState()) {
             setDisable(() => ({
                 ...disableSchema,
-                error: 'Todos los campos son obligatorios.'
+                error: 'Todos los campos son obligatorios!'
             }))
         }
     }, [state, isDirty, validateState, disableSchema]);
@@ -48,10 +48,12 @@ const useFormValidation = (stateSchema, validationSchema = {}, disableSchema, ca
             const name = e.target.name;
             const value = e.target.value;
             let error = '';
+            let errorfield = 'input-register';
 
             if (validationSchema[name].required) {
                 if (!value) {
-                    error = 'Campo obligatorio.'
+                    error = 'Campo obligatorio.';
+                    errorfield = 'input-register-error';
                 }
             }
 
@@ -61,12 +63,13 @@ const useFormValidation = (stateSchema, validationSchema = {}, disableSchema, ca
                 ) {
                     if (value && !validationSchema[name].validator.regEx.test(value)) {
                         error = validationSchema[name].validator.error;
+                        errorfield = 'input-register-error';
                     }
             }
 
             setState((prevState) => ({
                 ...prevState,
-                [name]: { value, error}
+                [name]: { value, error, errorfield}
             }));
         },
         [validationSchema]

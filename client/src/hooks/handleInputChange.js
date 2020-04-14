@@ -1,20 +1,20 @@
 export const stateSchemaStudent = {
-    firstname: { value:'', error: ''},
-    lastname: { value: '', error: ''},
-    email: { value: '', error: ''},
-    enrollment: { value: '', error: ''},
-    password: { value: '', error: ''},
-    confirmpassword: { value: '', error: ''},
-    gender: { value: '', error: ''}
+    firstname: { value:'', error: '', errorfield: 'input-register'},
+    lastname: { value: '', error: '', errorfield: 'input-register'},
+    email: { value: '', error: '', errorfield: 'input-register'},
+    enrollment: { value: '', error: '', errorfield: 'input-register'},
+    password: { value: '', error: '', errorfield: 'input-register'},
+    confirmpassword: { value: '', error: '', errorfield: 'input-register'},
+    gender: { value: '', error: '', errorfield: 'input-select-gender'}
 }
 
 export const stateSchemaTeacher = {
-    firstname: { value: '', error: ''},
-    lastname: { value: '', error: ''},
-    password: { value: '', error: ''},
-    email: { value: '', error: ''},
-    gender: { value: '', error: ''},
-    confirmpassword: { value: '', error: ''}
+    firstname: { value: '', error: '', errorfield: 'input-register'},
+    lastname: { value: '', error: '', errorfield: 'input-register'},
+    password: { value: '', error: '', errorfield: 'input-register'},
+    email: { value: '', error: '', errorfield: 'input-register'},
+    gender: { value: '', error: '', errorfield: 'input-select-gender'},
+    confirmpassword: { value: '', error: '', errorfield: 'input-register'}
 }
 
 export const disableSchema = {

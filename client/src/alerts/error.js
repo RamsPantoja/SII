@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 const Error = ({error}) => {
     return (
         <Fragment>
-            <span className='span-err'>{error}</span>
+            <span className='span-error-input'>{error}</span>
         </Fragment>
     )
 }

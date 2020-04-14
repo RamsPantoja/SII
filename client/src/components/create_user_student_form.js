@@ -17,9 +17,6 @@ const CreateUserStudentForm = () => {
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
     const [err, setErr] = useState(false);
 
-    const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
-    const errorSpan = err && disable.error? <Error error={disable.error}/> : null;
-    const errorApollo = error ? <Error error={error.message}/> : null;
     const { firstname, lastname, enrollment, email, password, gender, confirmpassword } = state;
 
     useEffect(() => {
@@ -29,24 +26,23 @@ const CreateUserStudentForm = () => {
             setConfirmPasswordError(false);
         }
     },[confirmpassword.value, password.value]);
+
+    const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
+    const errorSpan = err && disable.error? <Error error={disable.error}/> : null;
+    const errorApollo = error ? <Error error={error.message}/> : null;
     
     //Cambia el valor del className que se encuentra en las etiquetas Input, si hay error son rojas de lo contrario no.
-    const errorFirstname = firstname.error ? 'input-register-error' : 'input-register';
-    const errorLastname = lastname.error ? 'input-register-error' : 'input-register';
-    const errorEnrollment = enrollment.error ? 'input-register-error' : 'input-register';
-    const errorEmail = email.error ? 'input-register-error' : 'input-register';
-    const errorPassword = password.error ? 'input-register-error' : 'input-register';
     const errorConfirmPassword = confirmpassword.error || confirmPasswordError ? 'input-register-error' : 'input-register';
     const errorGender = gender.error ? 'input-select-gender-error' : 'input-select-gender';
 
     //Agrega un Span para mostrarle al Usuario cual es el error en la etiqueta Input.
-    const errorFirstnameSpan = firstname.error ? <span className='span-error-input'>{firstname.error}</span> : '';
-    const errorLastnameSpan = lastname.error ? <span className='span-error-input'>{lastname.error}</span> : '';
-    const errorEnrollmentSpan = enrollment.error ? <span className='span-error-input'>{enrollment.error}</span> : '';
-    const errorEmailSpan = email.error ? <span className='span-error-input'>{email.error}</span> : '';
-    const errorPasswordSpan = password.error ? <span className='span-error-input'>{password.error}</span> : '';
     const errorConfirmPasswordSpan = confirmpassword.error ? <span className='span-error-input'>{confirmpassword.error}</span> : '';
-    const errorGenderSpan = gender.error ? <span className='span-error-input'>{gender.error}</span> : '';
+
+    if (error && error.networkError) {
+        return (
+            <div className='network-error'>{error.message}</div>
+        )
+    }
 
     return(
         <div className='register-form-subcontainer'>
@@ -69,30 +65,32 @@ const CreateUserStudentForm = () => {
                         gender: gender.value
                     }}});
                 }}>
-                { errorSpan || errorApollo }
                 <div>
-                    <input className={errorFirstname} placeholder='Nombre' type='text' name='firstname' value={firstname.value} onChange={handleOnChange}/>
-                    {errorFirstnameSpan}
+                    { errorSpan || errorApollo }
                 </div>
                 <div>
-                    <input className={errorLastname} placeholder='Apellido' type='text' name='lastname' value={lastname.value} onChange={handleOnChange}/>
-                    {errorLastnameSpan}
+                    <input className={firstname.errorfield} placeholder='Nombre' type='text' name='firstname' value={firstname.value} onChange={handleOnChange}/>
+                    {firstname.error && <Error error={firstname.error}/>}
                 </div>
                 <div>
-                    <input className={errorEnrollment} placeholder='Matricula' type='text' name='enrollment' value={enrollment.value} onChange={handleOnChange}/>
-                    {errorEnrollmentSpan}
+                    <input className={lastname.errorfield} placeholder='Apellido' type='text' name='lastname' value={lastname.value} onChange={handleOnChange}/>
+                    {lastname.error && <Error error={lastname.error}/>}
                 </div>
                 <div>
-                    <input className={errorPassword} placeholder='Contraseña' type='password' name='password' value={password.value} onChange={handleOnChange}/>
-                    {errorPasswordSpan}
+                    <input className={enrollment.errorfield} placeholder='Matricula' type='text' name='enrollment' value={enrollment.value} onChange={handleOnChange}/>
+                    {enrollment.error && <Error error={enrollment.error}/>}
+                </div>
+                <div>
+                    <input className={password.errorfield} placeholder='Contraseña' type='password' name='password' value={password.value} onChange={handleOnChange}/>
+                    {password.error && <Error error={password.error}/>}
                 </div>
                 <div>
                     <input className={errorConfirmPassword} placeholder='Confirmar contraseña' type='password' value={confirmpassword.value} name='confirmpassword' onChange={handleOnChange}/>
                     {confirmPasswordErrorSpan || errorConfirmPasswordSpan}
                 </div>
                 <div>
-                    <input className={errorEmail} placeholder='Email' type='email' value={email.value} name='email' onChange={handleOnChange}/>
-                    {errorEmailSpan}
+                    <input className={email.errorfield} placeholder='Email' type='email' value={email.value} name='email' onChange={handleOnChange}/>
+                    {email.error && <Error error={email.error}/>}
                 </div>
                 <div>
                     <select className={errorGender} name='gender' value={gender.value} onChange={handleOnChange}>
@@ -100,7 +98,7 @@ const CreateUserStudentForm = () => {
                         <option value='MASCULINO'>MASCULINO</option>
                         <option value='FEMENINO'>FEMENINO</option>
                     </select>
-                    {errorGenderSpan}
+                    {gender.error && <Error error={gender.error}/>}
                 </div>
                 <button type='submit' disabled={loading} className='button-submit'>Crear</button>
             </form>
