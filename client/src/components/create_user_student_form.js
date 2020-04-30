@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
 //styles
 import './styles/create_user_form.css';
 //components
 import Error from '../alerts/error';
-//Hooks
-import useFormValidation from '../hooks/useFormValidation';
-import { stateSchemaStudent, validationSchemaStudent, disableSchema } from '../hooks/handleInputChange';
-//Mutations
-import { CREATE_STUDENT } from '../apolloclient/mutations';
 
-const CreateUserStudentForm = () => {
-    //Hook de validacion del Formulario.
-    const [state, disable, handleOnChange] = useFormValidation(stateSchemaStudent, validationSchemaStudent, disableSchema);
-    const [createStudent, {data, error, loading}] = useMutation(CREATE_STUDENT, {errorPolicy: 'all'});
+
+const CreateUserStudentForm = ({createStudent, state, disable, handleOnChange, error, loading}) => {
+    const { firstname, lastname, enrollment, email, password, gender, confirmpassword } = state;
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
     const [err, setErr] = useState(false);
-
-    const { firstname, lastname, enrollment, email, password, gender, confirmpassword } = state;
 
     useEffect(() => {
         if (confirmpassword.value !== password.value) {
@@ -26,6 +17,17 @@ const CreateUserStudentForm = () => {
             setConfirmPasswordError(false);
         }
     },[confirmpassword.value, password.value]);
+
+    const handleOnSubmit = (e, createStudent) => {
+        e.preventDefault();
+        if (disable.status) {
+            setErr(true);
+            return false;
+        } else {
+            setErr(false);
+        }
+        createStudent();
+    }
 
     const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
     const errorSpan = err && disable.error? <Error error={disable.error}/> : null;
@@ -48,22 +50,7 @@ const CreateUserStudentForm = () => {
         <div className='register-form-subcontainer'>
             <form className='register-form-subcontainer-grid'
                 onSubmit={(e) => {
-                    e.preventDefault();
-                    if (disable.status) {
-                        setErr(true);
-                        return false;
-                    } else {
-                        setErr(false);
-                    }
-                    //Se ejecuta el Mutation, se le pasan los valores del Input como variables y envia el formulario.
-                    createStudent({ variables: { input: {
-                        firstname: firstname.value,
-                        lastname: lastname.value,
-                        enrollment: enrollment.value,
-                        email: email.value,
-                        password: password.value,
-                        gender: gender.value
-                    }}});
+                    handleOnSubmit(e, createStudent);
                 }}>
                 <div>
                     { errorSpan || errorApollo }

@@ -1,0 +1,17 @@
+.validator-email-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px auto;
+}
+
+.validator-email-subcontainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 5px;
+    background-color: #FFFFFF;
+    padding: 50px;
+    border: none;
+    border-radius: 3px;
+}

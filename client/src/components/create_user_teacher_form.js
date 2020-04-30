@@ -5,16 +5,8 @@ import { useMutation } from '@apollo/react-hooks';
 import './styles/create_user_form.css';
 //Components
 import Error from '../alerts/error';
-//Hooks
-import useFormValidation from '../hooks/useFormValidation';
-import { stateSchemaTeacher, validationSchemaTeacher, disableSchema } from '../hooks/handleInputChange';
 
-//Mutations
-import { CREATE_TEACHER } from '../apolloclient/mutations';
-
-const CreateUserTeacherForm = () => {
-    const [createTeacher, {data, error, loading}] = useMutation(CREATE_TEACHER, {errorPolicy: 'all'});
-    const [state, disable, handleOnChange] = useFormValidation(stateSchemaTeacher, validationSchemaTeacher, disableSchema);
+const CreateUserTeacherForm = ({state, disable, createTeacher, loading, error, handleOnChange}) => {
     const [err, setErr] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
@@ -28,6 +20,17 @@ const CreateUserTeacherForm = () => {
         }
     },[confirmpassword.value, password.value]);
 
+    const handleOnSubmit = (e, createTeacher) => {
+        e.preventDefault();
+        if (disable.status) {
+            setErr(true);
+            return false;
+        } else {
+            setErr(false);
+        }
+        createTeacher();
+    }
+
     const errorSpan = err && disable.error ? <Error error={disable.error}/> : null;
     const confirmPasswordErrorSpan = confirmPasswordError ? <span className='span-error-input'>La contraseña no coincide.</span> : null;
     const errorApollo = error ? <Error error={error.message}/> : null;
@@ -38,7 +41,6 @@ const CreateUserTeacherForm = () => {
 
     //Agrega un Span para mostrar cual es el error en la etiqueta Input.
     const errorConfirmPasswordSpan = confirmpassword.error ? <span className='span-error-input'>{confirmpassword.error}</span> : null;
-    const errorGenderSpan = gender.error ? <span className='span-error-input'>{gender.error}</span> : null;
     
     if (error && error.networkError) {
         return (
@@ -50,22 +52,8 @@ const CreateUserTeacherForm = () => {
         <div className='register-form-subcontainer'>
             <form className='register-form-subcontainer-grid'
                 onSubmit={(e) => {
-                    e.preventDefault();
-                    if (disable.status) {
-                        setErr(true);
-                        return false;
-                    } else {
-                        setErr(false);
-                    }
-                    
-                    createTeacher({variables:{input: {
-                        firstname: firstname.value,
-                        lastname: lastname.value,
-                        password: password.value,
-                        email: email.value,
-                        gender: gender.value
-                    }}});
-                }}>
+                    handleOnSubmit(e, createTeacher);
+                }}>  
                 <div>
                     {errorSpan || errorApollo}
                 </div>           
@@ -95,7 +83,7 @@ const CreateUserTeacherForm = () => {
                         <option value='MASCULINO'>MASCULINO</option>
                         <option value='FEMENINO'>FEMENINO</option>
                     </select>
-                    {errorGenderSpan}
+                    {gender.error && <Error error={gender.error}/>}
                 </div>
                 <button type='submit' disabled={loading} className='button-submit'>Crear</button>
             </form>

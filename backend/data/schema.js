@@ -10,6 +10,7 @@ const typeDefs = gql `
         email: String
         img: String
         gender: genderUser
+        isconfirmated: Boolean
     }
 
     type Teacher {
@@ -20,6 +21,7 @@ const typeDefs = gql `
         email: String
         img: String
         gender: genderUser
+        isconfirmated: Boolean
     }
 
     enum genderUser {
@@ -36,6 +38,7 @@ const typeDefs = gql `
         email: String!
         img: String
         gender: genderUser!
+        isconfirmated: Boolean
     }
 
     input inputTeacher {
@@ -46,6 +49,7 @@ const typeDefs = gql `
         email: String!
         img: String
         gender: genderUser!
+        isconfirmated: Boolean
     }
 
     type Query {

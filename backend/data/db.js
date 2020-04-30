@@ -16,7 +16,8 @@ const studentSchema = new Schema({
     lastname: String,
     email: String,
     img: String,
-    gender: String
+    gender: String,
+    isconfirmated: Boolean
 });
 
 studentSchema.pre('save', function (next) {
@@ -44,7 +45,8 @@ const teacherSchema = new Schema({
     password: String,
     email: String,
     img: String,
-    gender: String
+    gender: String,
+    isconfirmated: Boolean
 });
 
 teacherSchema.pre('save', function (next) {
