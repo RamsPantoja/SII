@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 
 // Importamos los schemas de nuestra para las colecciones de la base de datos.
@@ -35,6 +36,12 @@ const createEmailToken = (entity, SECRET, expiresIn, transport, entityReq) => {
             html: `Please click this email to confirm your email: <a href="${url}">${url}<a/>`
         });
     });
+}
+
+const createUserToken = (entity, SECRET, expiresIn) => {
+    const { email } = entity;
+
+    return jwt.sign({email}, SECRET, {expiresIn});
 }
 
 export const resolvers = {
@@ -92,9 +99,44 @@ export const resolvers = {
                 isconfirmated: false
             }).save();
 
-            createEmailToken(newStudent, process.env.EMAIL_SECRET, '1d', transport, 'student');
+            createEmailToken(newStudent, process.env.EMAIL_SECRET, '6h', transport, 'student');
 
             return `Gracias por registrarte ${input.firstname}, se te ha enviado un correo de confirmacion.`;
+        },
+        authStudent: async (root, {email, password}) => {
+            const userStudent = await Students.findOne({email});
+
+            if (!userStudent) {
+                throw new Error('El email o password son incorrectos.');
+            } else if (userStudent.isconfirmated === false) {
+                throw new Error('Email no confirmado');
+            }
+            
+            const userStudentPassword = await bcrypt.compare(password, userStudent.password);
+            
+            if (!userStudentPassword) {
+                throw new Error('El email o password son incorrectos.');
+            }
+
+
+            return {token: createUserToken(userStudent, process.env.SECRET, '1h')}
+        },
+        authTeacher: async (root, {email, password}) => {
+            const userTeacher = await Teachers.findOne({email});
+
+            if (!userTeacher) {
+                throw new Error('El email o password son incorrectos.');
+            } else if (userTeacher.isconfirmated === false) {
+                throw new Error('Email no confirmado');
+            }
+
+            const userTeacherPassword = await bcrypt.compare(password, userTeacher.password);
+
+            if (!userTeacherPassword) {
+                throw new Error('El email o password son incorrectos.');
+            }
+
+            return {token: createUserToken(userTeacher, process.env.SECRET, '1h')}
         }
     }
 }

@@ -17,6 +17,10 @@ export const stateSchemaTeacher = {
     confirmpassword: { value: '', error: '', errorfield: 'input-register'}
 }
 
+export const stateSchemaLogin = {
+    email: { value: '', error: '', errorfield: 'input-login'},
+    password: { value: '', error: '', errorfield: 'input-login'}
+}
 export const disableSchema = {
     status: true,
     error: '',

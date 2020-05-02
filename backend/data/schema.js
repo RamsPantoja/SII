@@ -24,6 +24,10 @@ const typeDefs = gql `
         isconfirmated: Boolean
     }
 
+    type Token {
+        token: String!
+    }
+
     enum genderUser {
         FEMENINO
         MASCULINO
@@ -60,6 +64,8 @@ const typeDefs = gql `
     type Mutation {
         createStudent(input: inputStudent): String
         createTeacher(input: inputTeacher): String
+        authStudent(email: String!, password: String!): Token
+        authTeacher(email: String!, password: String!): Token
     }
 
 `
