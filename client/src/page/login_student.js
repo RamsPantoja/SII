@@ -27,6 +27,9 @@ const StudentLogin = () => {
             localStorage.setItem('token', data.authStudent.token);
         }
     })
+
+    const errorSpan = error ? <span className='error-span'>{error.message}</span> : null;
+    
     return (
         <div className='login-container'>
             <div className='login-subcontainer'>
@@ -35,7 +38,9 @@ const StudentLogin = () => {
                 <LoginComponentWithHook
                 handleInputChange={handleInputChange}
                 state={state}
-                authStudent={authStudent}/>
+                authEntity={authStudent}
+                error={error}/>
+                {errorSpan}
                 <span className='container-link'>No tienes una cuenta?<Link className='link-to-create-user' to='/student/register'>Crear Cuenta</Link></span>
             </div>
         </div>

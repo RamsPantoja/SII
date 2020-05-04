@@ -24,6 +24,22 @@
     outline: none;
 }
 
+.input-login-error {
+    padding: 6.5px;
+    height: 20px;
+    width: 250px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    color: #000000;
+    text-align: center;    
+    border-radius: 3px;
+    border: 1.5px rgb(189,84,82) solid;
+    font-weight: bolder;
+    background-color: rgb(240,242,245);
+    font-family: 'Roboto Mono';
+    outline: none;
+}
+
 .input-login:focus {
     padding: 6.5px;
     margin: 0px;

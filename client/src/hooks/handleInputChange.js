@@ -18,8 +18,8 @@ export const stateSchemaTeacher = {
 }
 
 export const stateSchemaLogin = {
-    email: { value: '', error: '', errorfield: 'input-login'},
-    password: { value: '', error: '', errorfield: 'input-login'}
+    email: { value: ''},
+    password: { value: ''}
 }
 export const disableSchema = {
     status: true,

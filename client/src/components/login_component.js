@@ -4,13 +4,15 @@ import React, { Fragment, useState } from 'react';
 //Styles
 import './styles/login_component.css';
 
-const LoginComponentWithHook = ({handleInputChange, state, authEntity}) => {
+const LoginComponentWithHook = ({handleInputChange, state, authEntity, error}) => {
     const {email, password} = state;
 
     const handleOnSubmit = (e, authEntity) => {
         e.preventDefault();
         authEntity();
     }
+
+    const errorfieldStyle = error ? 'input-login-error' : 'input-login';
 
     return (
         <Fragment>
@@ -20,10 +22,10 @@ const LoginComponentWithHook = ({handleInputChange, state, authEntity}) => {
                 }}
             >
                 <div>
-                    <input className='input-login' type="text" placeholder='Email' value={email.value} name='email' onChange={handleInputChange}/>
+                    <input className={errorfieldStyle} type="text" placeholder='Email' value={email.value} name='email' onChange={handleInputChange}/>
                 </div>
                 <div>
-                    <input className='input-login' type="password" placeholder='Password' value={password.value} name="password" onChange={handleInputChange}/>
+                    <input className={errorfieldStyle} type="password" placeholder='Password' value={password.value} name="password" onChange={handleInputChange}/>
                 </div>
                 <div>
                     <button type='submit' className='button-login'>Iniciar Sesion</button>

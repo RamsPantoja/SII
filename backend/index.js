@@ -5,6 +5,7 @@ import { resolvers } from './data/resolvers';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { Students, Teachers } from './data/db';
 
 dotenv.config({path:'variables.env'});
@@ -13,15 +14,34 @@ mongoose.set('useFindAndModify', false);
 
 const app = express();
 
+/*const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true
+};
+
+app.use(cors(corsOptions));*/
+
 const server = new ApolloServer({
     typeDefs, 
-    resolvers
+    resolvers,
+    context: async ({req}) => {
+        const token = req.headers.authorization || '';
+
+        if (token !== "null") {
+            try {
+                const getUser = await jwt.verify(token, process.env.SECRET);
+                req.user = getUser;
+                return { user }
+            } catch (error) {
+            }
+        }
+    }
 });
 
 //to send emails need a transporter object.
 app.get('/confirmation/student/:emailtoken', async (req, res) => {
     try {
-        const student = jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);
+        const student = await jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);
         await Students.findOneAndUpdate({_id : student._id}, {isconfirmated: true});
     } catch (e) {
         res.send('error');
@@ -32,7 +52,7 @@ app.get('/confirmation/student/:emailtoken', async (req, res) => {
 
 app.get('/confirmation/teacher/:emailtoken', async (req, res) => {
     try {
-        const teacher = jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);
+        const teacher = await jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);
         await Teachers.findOneAndUpdate({_id : teacher._id}, {isconfirmated: true});
     } catch (e) {
         res.send('error');
