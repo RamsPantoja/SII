@@ -29,9 +29,9 @@ const server = new ApolloServer({
 
         if (token !== "null") {
             try {
-                const getUser = await jwt.verify(token, process.env.SECRET);
-                req.user = getUser;
-                return { user }
+                const getUserEmail = await jwt.verify(token, process.env.SECRET);
+                req.userEmail = getUserEmail;
+                return { userEmail }
             } catch (error) {
             }
         }

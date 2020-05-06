@@ -25,7 +25,7 @@ const LoginComponentWithHook = ({handleInputChange, state, authEntity, error}) =
                     <input className={errorfieldStyle} type="text" placeholder='Email' value={email.value} name='email' onChange={handleInputChange}/>
                 </div>
                 <div>
-                    <input className={errorfieldStyle} type="password" placeholder='Password' value={password.value} name="password" onChange={handleInputChange}/>
+                    <input className={errorfieldStyle} type="password" placeholder='Contraseña' value={password.value} name="password" onChange={handleInputChange}/>
                 </div>
                 <div>
                     <button type='submit' className='button-login'>Iniciar Sesion</button>

@@ -4,7 +4,6 @@ const typeDefs = gql `
     type Student {
         id: ID
         enrollment: String
-        password: String
         firstname: String
         lastname: String
         email: String
@@ -17,7 +16,6 @@ const typeDefs = gql `
         id: ID
         firstname: String
         lastname: String
-        password: String
         email: String
         img: String
         gender: genderUser
@@ -59,6 +57,7 @@ const typeDefs = gql `
     type Query {
         getStudents(limit: Int): [Student]
         getTeachers(limit: Int): [Teacher]
+        getUserStudentAuth: Student
     }
 
     type Mutation {

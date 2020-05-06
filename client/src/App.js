@@ -13,6 +13,7 @@ import StudentLogin from './page/login_student';
 import TeacherLogin from './page/login_teacher';
 import CreateUserStudent from './page/create_user_student';
 import CreateUserTeacher from './page/create_user_teacher';
+import SessionStudent from './components/session_student';
 
 const httpLink = new HttpLink({uri: 'http://localhost:8200/graphql', credentials: 'same-origin'});
 
@@ -40,7 +41,7 @@ const client = new ApolloClient({
   }
 });
 
-const App = () => {
+const App = ({refetch, session}) => {
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -58,4 +59,6 @@ const App = () => {
   )
 }
 
-export default App;
+const RootSessionStudent = SessionStudent(App);
+
+export { RootSessionStudent };

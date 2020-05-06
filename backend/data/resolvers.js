@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 
-// Importamos los schemas de nuestra para las colecciones de la base de datos.
+// Importamos los schemas para las colecciones de la base de datos.
 import { Students, Teachers } from './db';
 
 mongoose.set('useFindAndModify', false);
@@ -22,6 +22,7 @@ const transport = nodemailer.createTransport({
     }
 });
 
+//Crea un token basado en el ID del usuario creado y envia un email con el token creado al Email registrado por el Usuario.
 const createEmailToken = (entity, SECRET, expiresIn, transport, entityReq) => {
     const { _id, email, firstname } = entity;
 
@@ -52,6 +53,20 @@ export const resolvers = {
 
         getTeachers: (root, {limit}) => {
             return Teachers.find({}).limit(limit);
+        },
+        getUserStudentAuth: async (root, args, {userEmail}) => {
+            if (!userEmail) {
+                return null;
+            }
+            const studentUser = await Students.findOne({email: userEmail.email});
+            return studentUser;
+        },
+        getUserTeacherAuth: async (root, args, {userEmail}) => {
+            if (!userEmail) {
+                return null;
+            }
+            const teacherUser = await Teachers.findOne({ email: userEmail.email});
+            return teacherUser;
         }
     },
     
@@ -77,7 +92,7 @@ export const resolvers = {
 
             createEmailToken(newTeacher, process.env.EMAIL_SECRET, '6h', transport, 'teacher');
 
-            return `Gracias por registrarte ${input.firstname}, te hemos enviado un correo de confirmacion.`;
+            return `Gracias por registrarte ${input.firstname}, se te ha enviado un correo de confirmacion.`;
         },
         createStudent: async (root, {input}) => {
             const emailAlreadyExist = await Students.findOne({
@@ -107,7 +122,7 @@ export const resolvers = {
             const userStudent = await Students.findOne({email});
 
             if (!userStudent) {
-                throw new Error('El email o password son incorrectos.');
+                throw new Error('El email o contraseña son incorrectos.');
             } else if (userStudent.isconfirmated === false) {
                 throw new Error('Email no confirmado');
             }
@@ -115,7 +130,7 @@ export const resolvers = {
             const userStudentPassword = await bcrypt.compare(password, userStudent.password);
             
             if (!userStudentPassword) {
-                throw new Error('El email o password son incorrectos.');
+                throw new Error('El email o contraseña son incorrectos.');
             }
 
 
@@ -125,7 +140,7 @@ export const resolvers = {
             const userTeacher = await Teachers.findOne({email});
 
             if (!userTeacher) {
-                throw new Error('El email o password son incorrectos.');
+                throw new Error('El email o contraseña son incorrectos.');
             } else if (userTeacher.isconfirmated === false) {
                 throw new Error('Email no confirmado');
             }
@@ -133,7 +148,7 @@ export const resolvers = {
             const userTeacherPassword = await bcrypt.compare(password, userTeacher.password);
 
             if (!userTeacherPassword) {
-                throw new Error('El email o password son incorrectos.');
+                throw new Error('El email o contraseña son incorrectos.');
             }
 
             return {token: createUserToken(userTeacher, process.env.SECRET, '1h')}
