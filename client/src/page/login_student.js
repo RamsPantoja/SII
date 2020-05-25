@@ -1,6 +1,6 @@
 import React from 'react';
 import {useMutation} from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 //Components
 import LoginComponentWithHook from '../components/login_component';
@@ -14,7 +14,7 @@ import {AUTH_STUDENT} from '../apolloclient/mutations';
 import './styles/login_styles.css';
 import { stateSchemaLogin } from '../hooks/handleInputChange';
 
-const StudentLogin = () => {
+const StudentLogin = ({refetchStudent}) => {
     const [state, handleInputChange] = useAuthValidation(stateSchemaLogin);
     const { email, password } = state;
     const [authStudent, {data, loading, error}] = useMutation(AUTH_STUDENT, {
@@ -23,8 +23,9 @@ const StudentLogin = () => {
             email: email.value,
             password: password.value
         },
-        onCompleted: (data) => {
+        onCompleted: async (data) => {
             localStorage.setItem('token', data.authStudent.token);
+            await refetchStudent();
         }
     })
 
@@ -47,4 +48,4 @@ const StudentLogin = () => {
     )
 }
 
-export default StudentLogin;
+export default withRouter(StudentLogin);

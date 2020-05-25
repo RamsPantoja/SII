@@ -54,19 +54,19 @@ export const resolvers = {
         getTeachers: (root, {limit}) => {
             return Teachers.find({}).limit(limit);
         },
-        getUserStudentAuth: async (root, args, {userEmail}) => {
-            if (!userEmail) {
+        getUserStudentAuth: async (root, args, context ) => {
+            if (!context.getUserEmail) {
                 return null;
             }
-            const studentUser = await Students.findOne({email: userEmail.email});
-            return studentUser;
+            const userStudent = await Students.findOne({email: context.getUserEmail.email});
+            return userStudent;
         },
-        getUserTeacherAuth: async (root, args, {userEmail}) => {
-            if (!userEmail) {
+        getUserTeacherAuth: async (root, args, context) => {
+            if (!context.userEmail) {
                 return null;
             }
-            const teacherUser = await Teachers.findOne({ email: userEmail.email});
-            return teacherUser;
+            const userTeacher = await Teachers.findOne({ email: context.userEmail.email});
+            return userTeacher;
         }
     },
     

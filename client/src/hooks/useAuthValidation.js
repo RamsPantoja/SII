@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const useAuthValidation = (stateSchema, apolloError) => {
+const useAuthValidation = (stateSchema) => {
     const [state, setState] = useState(stateSchema);
 
     const handleInputChange = useCallback(

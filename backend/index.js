@@ -14,13 +14,6 @@ mongoose.set('useFindAndModify', false);
 
 const app = express();
 
-/*const corsOptions = {
-    origin: 'http://localhost:3000',
-    credentials: true
-};
-
-app.use(cors(corsOptions));*/
-
 const server = new ApolloServer({
     typeDefs, 
     resolvers,
@@ -30,9 +23,10 @@ const server = new ApolloServer({
         if (token !== "null") {
             try {
                 const getUserEmail = await jwt.verify(token, process.env.SECRET);
-                req.userEmail = getUserEmail;
-                return { userEmail }
+                req.getUserEmail = getUserEmail;
+                return { getUserEmail }
             } catch (error) {
+                console.log(error);
             }
         }
     }

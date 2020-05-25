@@ -58,6 +58,7 @@ const typeDefs = gql `
         getStudents(limit: Int): [Student]
         getTeachers(limit: Int): [Teacher]
         getUserStudentAuth: Student
+        getUserTeacherAuth: Teacher
     }
 
     type Mutation {
