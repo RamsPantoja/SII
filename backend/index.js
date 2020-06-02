@@ -14,6 +14,7 @@ mongoose.set('useFindAndModify', false);
 
 const app = express();
 
+//establece el contexto entre el servidor y el cliente, leyendo los headers del cliente.
 const server = new ApolloServer({
     typeDefs, 
     resolvers,
@@ -22,7 +23,9 @@ const server = new ApolloServer({
 
         if (token !== "null") {
             try {
+                //verifica el token y desincripta el objeto que hay en el.
                 const getUserEmail = await jwt.verify(token, process.env.SECRET);
+                //se hace el objeto getUserEmail parte del request.
                 req.getUserEmail = getUserEmail;
                 return { getUserEmail }
             } catch (error) {
@@ -32,7 +35,7 @@ const server = new ApolloServer({
     }
 });
 
-//to send emails need a transporter object.
+//Actualiza la propiedad isconfirmated del objeto con el id que se encuentra en la coleccion Students, y la cambia a true cuando se hace el req a la url.
 app.get('/confirmation/student/:emailtoken', async (req, res) => {
     try {
         const student = await jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);
@@ -44,6 +47,7 @@ app.get('/confirmation/student/:emailtoken', async (req, res) => {
     return res.redirect('http://localhost:3000/student/login');
 });
 
+//Actualiza la propiedad isconfirmated del objeto con el id que se encuentra en la coleccion Teachers, y la cambia a true cuando se hace el req a la url.
 app.get('/confirmation/teacher/:emailtoken', async (req, res) => {
     try {
         const teacher = await jwt.verify(req.params.emailtoken, process.env.EMAIL_SECRET);

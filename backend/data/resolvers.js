@@ -62,10 +62,10 @@ export const resolvers = {
             return userStudent;
         },
         getUserTeacherAuth: async (root, args, context) => {
-            if (!context.userEmail) {
+            if (!context.getUserEmail) {
                 return null;
             }
-            const userTeacher = await Teachers.findOne({ email: context.userEmail.email});
+            const userTeacher = await Teachers.findOne({ email: context.getUserEmail.email});
             return userTeacher;
         }
     },

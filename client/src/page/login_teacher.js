@@ -12,7 +12,7 @@ import { AUTH_TEACHER } from '../apolloclient/mutations';
 import './styles/login_styles.css';
 import { stateSchemaLogin } from '../hooks/handleInputChange';
 
-const TeacherLogin = () => {
+const TeacherLogin = ({currentUserTeacherRefetch}) => {
     const [state, handleInputChange] = useAuthValidation(stateSchemaLogin);
     const { email, password } = state;
     const [authTeacher, {data, loading, error}] = useMutation(AUTH_TEACHER, {
@@ -21,8 +21,9 @@ const TeacherLogin = () => {
             email: email.value,
             password: password.value
         },
-        onCompleted: (data) => {
+        onCompleted: async (data) => {
             localStorage.setItem('token', data.authTeacher.token);
+            await currentUserTeacherRefetch();
         }
     });
 
