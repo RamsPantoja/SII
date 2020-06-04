@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
 //Components
@@ -12,7 +12,7 @@ import { AUTH_TEACHER } from '../apolloclient/mutations';
 import './styles/login_styles.css';
 import { stateSchemaLogin } from '../hooks/handleInputChange';
 
-const TeacherLogin = ({currentUserTeacherRefetch}) => {
+const TeacherLogin = ({currentUserTeacherRefetch, history}) => {
     const [state, handleInputChange] = useAuthValidation(stateSchemaLogin);
     const { email, password } = state;
     const [authTeacher, {data, loading, error}] = useMutation(AUTH_TEACHER, {
@@ -24,6 +24,7 @@ const TeacherLogin = ({currentUserTeacherRefetch}) => {
         onCompleted: async (data) => {
             localStorage.setItem('token', data.authTeacher.token);
             await currentUserTeacherRefetch();
+            history.push('/teacher');
         }
     });
 
@@ -46,4 +47,4 @@ const TeacherLogin = ({currentUserTeacherRefetch}) => {
     )
 }
 
-export default TeacherLogin;
+export default withRouter(TeacherLogin);
