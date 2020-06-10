@@ -1,16 +1,31 @@
 .drawer-container {
     display: block;
-    margin: 10px;
+    margin: 20px;
     text-decoration: none;
 }
 
 .link-to-section {
     display: block;
+    justify-content: center;
     text-decoration: none;
+    color: rgb(101,103,107);
+}
+.link-to-section:hover {
     color: #000000;
 }
 
 .link-list {
     display: block;
+    text-decoration: none;
+}
 
+.link-list > li {
+    display: block;
+}
+.topic-container {
+    display: inline-block;
+    position: relative;
+    bottom: 12px;
+    margin-left: 20px;
+    font-weight: bolder;
 }

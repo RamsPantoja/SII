@@ -33,7 +33,7 @@ const TeacherLogin = ({currentUserTeacherRefetch, history}) => {
     return (
         <div className='login-container'>
             <div className='login-subcontainer'>
-                <img src='./img/user.png' height='100px' width='100px'/>
+                <img src='./img/user.png' height='100px' width='100px' alt='teacher-icon'/>
                 <h1>Profesor</h1>
                 <LoginComponentWithHook
                 state={state}

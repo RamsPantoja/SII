@@ -35,7 +35,7 @@ const StudentLogin = ({currentUserStudentRefetch, history}) => {
     return (
         <div className='login-container'>
             <div className='login-subcontainer'>
-                <img src='./img/graduated.png' height='100px' width='100px'></img>
+                <img src='./img/graduated.png' height='100px' width='100px' alt='student-icon'></img>
                 <h1>Alumno</h1>
                 <LoginComponentWithHook
                 handleInputChange={handleInputChange}
