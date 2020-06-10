@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Inf = () => {
+const Docs = () => {
     return (
         <div>
-            <h1>Inf</h1>
+            <h1>Docs</h1>
         </div>
     )
 }
 
-export default Inf;
+export default Docs;

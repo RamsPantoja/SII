@@ -5,7 +5,7 @@ const data = [
         "description": "Consulta tus tendencias de calificaciones tanto parciales como departamentales, asi como documentacion sobre cursos.",
         "button_in": "Entrar",
         "section": "Alumno",
-        "to": "/student/login"
+        "to": "/student"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@ const data = [
         "description": "Captura de calificaciones de examenes parciales y departamentales, estadisticas sobre alumnos y asistencias registradas por el profesor.",
         "button_in": "Entrar",
         "section": "Profesor",
-        "to": "/teacher/login"
+        "to": "/teacher"
     },
     {
         "id": 3,

@@ -8,31 +8,34 @@ import Data from '../data_section';
 //styles
 import './styles/main_page.css';
 
-const MainPage = ({sessionStudent}) => {
+const MainPage = ({sessionStudent, sessionTeacher}) => {
     const { getUserStudentAuth } = sessionStudent;
+    const { getUserTeacherAuth } = sessionTeacher;
     const isStudentAuth = getUserStudentAuth ? <Redirect to='/student'/> : null;
+    const isTeacherAuth = getUserTeacherAuth ? <Redirect to='/teacher'/> : null;
 
     const data = Data;
     const sections = data.map((item) => {
         return(
-            <Fragment>
-                {isStudentAuth}
-                <div key={item.id} className='cardSection-container'>
-                    <CardSection 
-                    img={item.img}
-                    section={item.section}
-                    description={item.description}
-                    buttonIn={item.button_in}
-                    to={item.to}/>
-                </div>
-            </Fragment>
+            <div key={item.id} className='cardSection-container'>
+                <CardSection 
+                img={item.img}
+                section={item.section}
+                description={item.description}
+                buttonIn={item.button_in}
+                to={item.to}/>
+            </div>
         )
     })
 
     return (
-        <div className='mainPage-container'>
-            <div className='section-container'>{sections}</div>
-        </div>
+        <Fragment>
+            {isStudentAuth}
+            {isTeacherAuth}
+            <div className='mainPage-container'>
+                <div className='section-container'>{sections}</div>
+            </div>
+        </Fragment>
     )
 }
 

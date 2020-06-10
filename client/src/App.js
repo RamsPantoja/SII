@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 //Styles
 import './App.css';
 //Components
@@ -12,17 +12,18 @@ import TeacherPanel from './page/teacher_panel';
 import StudentPanel from './page/student_panel';
 
 const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefetch, sessionTeacher}) => {
+  console.log(sessionStudent)
   return (
       <Router>
         <div className='App-container'>
           <Switch>
-            <Route exact path='/' render={() => <MainPage sessionStudent={sessionStudent}/>}/>
-            <Route exact path='/student/login' render={(history) => <StudentLogin currentUserStudentRefetch={currentUserStudentRefetch} history={history}/>}/>
-            <Route exact path='/teacher/login' render={(history) => <TeacherLogin currentUserTeacherRefetch={currentUserTeacherRefetch} history={history}/>}/>
-            <Route exact path='/student/register' component={CreateUserStudent}/>
-            <Route exact path='/teacher/register' component={CreateUserTeacher}/>
-            <Route exact path='/teacher' component={TeacherPanel}/>
-            <Route exact path='/student' component={StudentPanel}/>
+            <Route exact path='/' render={() => <MainPage sessionStudent={sessionStudent} sessionTeacher={sessionTeacher}/>}/>
+            <Route path='/teacher_login' render={(history) => <TeacherLogin currentUserTeacherRefetch={currentUserTeacherRefetch} history={history}/>}/>
+            <Route path='/student_login' render={(history) => <StudentLogin currentUserStudentRefetch={currentUserStudentRefetch} history={history}/>}/>
+            <Route path='/student_register' component={CreateUserStudent}/>
+            <Route path='/teacher_register' component={CreateUserTeacher}/>
+            <Route path='/teacher' component={TeacherPanel}/>
+            <Route path='/student' render={() => <StudentPanel sessionStudent={sessionStudent}/>}/>
           </Switch>
         </div>
       </Router>
