@@ -1,17 +1,17 @@
 .drawer-container {
     display: block;
-    margin: 20px;
-    text-decoration: none;
 }
 
 .link-to-section {
     display: block;
     justify-content: center;
+    padding: 5px;
     text-decoration: none;
-    color: rgb(101,103,107);
+    color: rgb(96,96,96);
 }
 .link-to-section:hover {
     color: #000000;
+    background-color: #80cbc4;
 }
 
 .link-list {
@@ -25,7 +25,6 @@
 .topic-container {
     display: inline-block;
     position: relative;
-    bottom: 12px;
-    margin-left: 20px;
-    font-weight: bolder;
+    bottom: 6px;
+    margin-left: 10px;
 }
