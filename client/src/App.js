@@ -18,8 +18,13 @@ const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefet
         <div className='App-container'>
           <Switch>
             <Route exact path='/' render={() => <MainPage sessionStudent={sessionStudent} sessionTeacher={sessionTeacher}/>}/>
-            <Route path='/teacher_login' render={(history) => <TeacherLogin currentUserTeacherRefetch={currentUserTeacherRefetch} history={history}/>}/>
-            <Route path='/student_login' render={(history) => <StudentLogin currentUserStudentRefetch={currentUserStudentRefetch} history={history}/>}/>
+            <Route path='/teacher_login' render={(history) => <TeacherLogin 
+                                                                currentUserTeacherRefetch={currentUserTeacherRefetch} 
+                                                                history={history}/>}/>
+            <Route path='/student_login' render={(history) => <StudentLogin 
+                                                                currentUserStudentRefetch={currentUserStudentRefetch} 
+                                                                history={history} 
+                                                                sessionStudent={sessionStudent}/>}/>
             <Route path='/student_register' component={CreateUserStudent}/>
             <Route path='/teacher_register' component={CreateUserTeacher}/>
             <Route path='/teacher' component={TeacherPanel}/>

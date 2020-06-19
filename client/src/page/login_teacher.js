@@ -33,7 +33,7 @@ const TeacherLogin = ({currentUserTeacherRefetch, history}) => {
     return (
         <div className='login-container'>
             <div className='login-subcontainer'>
-                <img src='./img/user.png' height='100px' width='100px' alt='teacher-icon'/>
+                <img src='./img/rueda-dentada.svg' height='100px' width='100px' alt='teacher-icon'/>
                 <h1>Profesor</h1>
                 <LoginComponentWithHook
                 state={state}
@@ -41,7 +41,7 @@ const TeacherLogin = ({currentUserTeacherRefetch, history}) => {
                 authEntity={authTeacher}
                 error={error}/>
                 {errorSpan}
-                <span className='container-link'>No tienes una cuenta?<Link className='link-to-create-user' to='/teacher/register'>Crear Cuenta</Link></span>
+                <span className='container-link'>No tienes una cuenta?<Link className='link-to-create-user' to='/teacher_register'>Crear Cuenta</Link></span>
             </div>
         </div>
     )

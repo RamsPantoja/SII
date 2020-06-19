@@ -1,11 +1,17 @@
 .drawer-container {
     display: block;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFFFFF;
 }
 
 .link-to-section {
     display: block;
     justify-content: center;
     padding: 5px;
+    border: none;
+    
     text-decoration: none;
     color: rgb(96,96,96);
 }
@@ -16,6 +22,7 @@
 
 .link-list {
     display: block;
+    border-radius: 5px;
     text-decoration: none;
 }
 
@@ -27,4 +34,37 @@
     position: relative;
     bottom: 6px;
     margin-left: 10px;
+}
+
+.link-to-section-top {
+    display: block;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    
+    text-decoration: none;
+    color: rgb(96,96,96);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.link-to-section-top:hover {
+    color: #000000;
+    background-color: #80cbc4;
+}
+.link-to-section-bottom {
+    display: block;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    
+    text-decoration: none;
+    color: rgb(96,96,96);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.link-to-section-bottom:hover {
+    color: #000000;
+    background-color: #80cbc4;
 }

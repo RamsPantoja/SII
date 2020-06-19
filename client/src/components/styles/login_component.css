@@ -48,10 +48,10 @@
 
 .button-login {
     padding: 5px 10px;
-    background-color: rgb(26,80,131);
+    background-color: #4f9a94;
     border: none;
     border-radius: 3px;
-    color: #FFFFFF;
+    color: #000000;
     font-family: 'Roboto Mono';
     transform: scale(1);
     transition: 0.1s ease;
@@ -61,7 +61,7 @@
 
 .button-login:hover {
     transform: scale(1.1);
-    background-color: rgb(86,172,224);
+    background-color: #80cbc4;
 }
 
 

@@ -1,15 +1,16 @@
 .panel-container {
     width: 100%;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 3fr 1fr;
+    grid-template-rows: 0.3fr 3fr 1fr;
     grid-template-areas: 'drawer header header header header'
                             'drawer panel-content panel-content panel-content panel-content'
                             'drawer panel-content panel-content panel-content panel-content';
 }
 
 .drawer {
-    background-color: #FFFFFF;
+    background-color: rgb(240,242,245);
     grid-area: drawer;
 }
 
@@ -21,4 +22,11 @@
 .panel-content {
     background-color: rgb(240,242,245);
     grid-area: panel-content;
+}
+
+.panel-content-container {
+    display: block;
+    background-color: #FFFFFF;
+    margin: 10px;
+    border-radius: 5px;
 }

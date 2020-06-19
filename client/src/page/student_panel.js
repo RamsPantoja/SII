@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Switch, Route, useRouteMatch, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 //styles
 import './styles/student_panel.css';
 
@@ -15,7 +15,7 @@ import StudentHeader from '../components/student_components/header/student_heade
 const StudentPanel = ({sessionStudent}) => {
     const { path, url} = useRouteMatch();
     const { getUserStudentAuth } = sessionStudent;
-    const isStudentAuth = getUserStudentAuth ? <Redirect to='/student'/> : <Redirect to='/student_login'/>
+    const isStudentAuth = getUserStudentAuth ? null : <Redirect to='/student_login'/>
 
     return (
         <Fragment>
@@ -24,16 +24,18 @@ const StudentPanel = ({sessionStudent}) => {
                 <StudentDrawer url={url}/>
                 <StudentHeader/>
                 <div className='panel-content'>
-                    <Switch>
-                        <Route exact path={`${path}`}>
-                            <h1>Inicio</h1>
-                        </Route>
-                        <Route path={`${path}/docs`} component={Docs}/>
-                        <Route path={`${path}/pick_subjects`} component={PickSubjects}/>
-                        <Route path={`${path}/subjects`} component={Subjects}/>
-                        <Route path={`${path}/school_grades`} component={SchoolGrades}/>
-                        <Route path={`${path}/school_schedule`} component={SchoolSchedule}/>
-                    </Switch>
+                    <div className='panel-content-container'>
+                        <Switch>
+                            <Route exact path={`${path}`}>
+                                <h1>Inicio</h1>
+                            </Route>
+                            <Route path={`${path}/docs`} component={Docs}/>
+                            <Route path={`${path}/pick_subjects`} component={PickSubjects}/>
+                            <Route path={`${path}/subjects`} component={Subjects}/>
+                            <Route path={`${path}/school_grades`} component={SchoolGrades}/>
+                            <Route path={`${path}/school_schedule`} component={SchoolSchedule}/>
+                        </Switch>
+                    </div>
                 </div>
             </div>
         </Fragment>

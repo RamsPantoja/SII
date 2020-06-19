@@ -1,0 +1,21 @@
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'title-panel user-info';
+    background-color: #FFFFFF;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.title-panel {
+    grid-area: title-panel;
+    display: block;
+    margin-left: 10PX;
+}
+
+.user-info {
+    grid-area: user-info;
+    display: block;
+    text-align: right;
+}

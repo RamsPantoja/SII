@@ -1,10 +1,16 @@
 import React from 'react';
+import './student_header.css';
 
 const StudentHeader = () => {
     return (
-        <div className='header'>
-            <h1>UserInf</h1>
-        </div>
+        <header className='header'>
+            <div className='header-container'>
+                <div className='title-panel'><h1>FIM: Estudiante</h1></div>
+                <div className='user-info'>
+                    <p>UserInfo</p>
+                </div>
+            </div>
+        </header>
     )
 }
 

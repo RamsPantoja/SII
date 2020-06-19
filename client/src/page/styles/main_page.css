@@ -5,7 +5,8 @@
     justify-content: center;
     align-items: center;
     padding: 0px 25px;
-    background-color: rgb(240,242,245);
+    height: 100%;
+    position: relative;
 }
 
 .section-container {

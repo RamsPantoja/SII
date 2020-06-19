@@ -11,10 +11,10 @@
     display: block;
     margin: 0px auto;
     padding: 5px;
-    color: #ffffff;
+    color: #000000;
     border: none;
     border-radius: 5px;
-    background-color: rgb(26,80,131);
+    background-color: #4f9a94;
     font-family: 'Roboto Mono';
     transform: scale(1);
     transition: 0.1s ease;
@@ -23,7 +23,7 @@
 }
 
 .newStyle-button:hover {
-    background-color: rgb(86,172,224);
+    background-color: #80cbc3;
     transform: scale(1.1);
 }
 
