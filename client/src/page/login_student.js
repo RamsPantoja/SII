@@ -28,12 +28,12 @@ const StudentLogin = ({currentUserStudentRefetch, history, sessionStudent}) => {
         onCompleted: async (data) => {
             localStorage.setItem('token', data.authStudent.token);
             await currentUserStudentRefetch();
-            history.push('/student');
+            history.push('/student_panel');
         }
     })
 
     const errorSpan = error ? <span className='error-span'>{error.message}</span> : null;
-    const isStudentAuth = getUserStudentAuth ? <Redirect to='/student'/> : null;
+    const isStudentAuth = getUserStudentAuth ? <Redirect to='/student_panel'/> : null;
     
     return (
         <Fragment>

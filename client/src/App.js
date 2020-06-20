@@ -27,8 +27,8 @@ const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefet
                                                                 sessionStudent={sessionStudent}/>}/>
             <Route path='/student_register' component={CreateUserStudent}/>
             <Route path='/teacher_register' component={CreateUserTeacher}/>
-            <Route path='/teacher' component={TeacherPanel}/>
-            <Route path='/student' render={() => <StudentPanel sessionStudent={sessionStudent}/>}/>
+            <Route path='/teacher_panel' component={TeacherPanel}/>
+            <Route path='/student_panel' render={() => <StudentPanel sessionStudent={sessionStudent}/>}/>
           </Switch>
         </div>
       </Router>

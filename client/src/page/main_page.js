@@ -11,8 +11,8 @@ import './styles/main_page.css';
 const MainPage = ({sessionStudent, sessionTeacher}) => {
     const { getUserStudentAuth } = sessionStudent;
     const { getUserTeacherAuth } = sessionTeacher;
-    const isStudentAuth = getUserStudentAuth ? <Redirect to='/student'/> : null;
-    const isTeacherAuth = getUserTeacherAuth ? <Redirect to='/teacher'/> : null;
+    const isStudentAuth = getUserStudentAuth ? <Redirect to='/student_panel'/> : null;
+    const isTeacherAuth = getUserTeacherAuth ? <Redirect to='/teacher_panel'/> : null;
 
     const data = Data;
     const sections = data.map((item) => {

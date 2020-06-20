@@ -24,7 +24,7 @@ const TeacherLogin = ({currentUserTeacherRefetch, history}) => {
         onCompleted: async (data) => {
             localStorage.setItem('token', data.authTeacher.token);
             await currentUserTeacherRefetch();
-            history.push('/teacher');
+            history.push('/teacher_panel');
         }
     });
 

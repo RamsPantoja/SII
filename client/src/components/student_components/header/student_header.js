@@ -1,13 +1,17 @@
 import React from 'react';
 import './student_header.css';
+import DropdownUser from '../../dropdown_user';
 
-const StudentHeader = () => {
+const StudentHeader = ({sessionStudent}) => {
     return (
         <header className='header'>
             <div className='header-container'>
-                <div className='title-panel'><h1>FIM: Estudiante</h1></div>
+                <div className='title-panel'>
+                    <i className='material-icons md-48'>engineering</i>
+                    <h1>FIM</h1>
+                </div>
                 <div className='user-info'>
-                    <p>UserInfo</p>
+                    <DropdownUser sessionEnity={sessionStudent}/>
                 </div>
             </div>
         </header>

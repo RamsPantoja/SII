@@ -15,14 +15,14 @@ import StudentHeader from '../components/student_components/header/student_heade
 const StudentPanel = ({sessionStudent}) => {
     const { path, url} = useRouteMatch();
     const { getUserStudentAuth } = sessionStudent;
-    const isStudentAuth = getUserStudentAuth ? null : <Redirect to='/student_login'/>
+    const isStudentAuth = getUserStudentAuth ?  null : <Redirect to='/student_login'/>
 
     return (
         <Fragment>
             {isStudentAuth}
             <div className='panel-container'>
                 <StudentDrawer url={url}/>
-                <StudentHeader/>
+                <StudentHeader sessionStudent={sessionStudent}/>
                 <div className='panel-content'>
                     <div className='panel-content-container'>
                         <Switch>

@@ -1,0 +1,35 @@
+.dropdown-container {
+    display: inline-block;
+    justify-content: center;
+    margin: 5px;
+    position: relative;
+}
+
+.dropdown-button {
+    background-color: #4f9a94;
+    display: flex;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 20px;
+    font-family: 'Roboto Mono';
+    font-weight: bold;
+    outline: none;
+}
+
+.dropdown-button:hover {
+    background-color: #80cbc4;
+}
+
+.user-dropdown {
+    display: inline-block;
+    position: relative;
+    top: 2.5px;
+    padding-right: 2px;
+}
+
+.usericon-dropdown {
+    display: inline-block;
+    height: 24px;
+}
