@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/dropdown_user.css';
 import DropdownContent from './student_components/dropdown_content';
 
@@ -17,6 +17,15 @@ const DropdownUser = ({sessionEnity}) => {
             setDropdown(true)
         }
     }
+
+    useEffect(() => {
+        window.onclick = (e) => {
+            let clickOutside = e.target;
+            if (clickOutside && dropdown === true) {
+                setDropdown(false)
+            }
+        }
+    });
 
     return (
         <div className='dropdown-container'>
