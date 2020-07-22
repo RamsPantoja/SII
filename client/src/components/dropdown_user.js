@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import './styles/dropdown_user.css';
 import DropdownContent from './student_components/dropdown_content';
 
-const DropdownUser = ({sessionEnity}) => {
+const DropdownUser = ({sessionEnity, currentUserStudentClient}) => {
     const { getUserStudentAuth } = sessionEnity;
     const [ dropdown, setDropdown ] = useState(false);
+    
     const isUserAuth = getUserStudentAuth ? getUserStudentAuth.email : <span>NoUser</span>
+    const isDropdown = dropdown ? <DropdownContent currentUserStudentClient={currentUserStudentClient}/> : null;
 
-    const isDropdown = dropdown ? <DropdownContent/> : null;
-
-    const handleOnClick = (e) => {
+    const handleOnClickDropDown = (e) => {
         e.preventDefault();
         if (dropdown === true) {
             setDropdown(false)
@@ -29,7 +29,7 @@ const DropdownUser = ({sessionEnity}) => {
 
     return (
         <div className='dropdown-container'>
-            <button type='button'className='dropdown-button' onClick={(e) => {handleOnClick(e)}}>
+            <button type='button'className='dropdown-button' onClick={(e) => {handleOnClickDropDown(e)}}>
                 <div className='usericon-dropdown'>
                     <i className='material-icons md-24'>account_circle</i>
                 </div>

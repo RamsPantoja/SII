@@ -44,7 +44,7 @@ app.get('/confirmation/student/:emailtoken', async (req, res) => {
         res.send('error');
     }
 
-    return res.redirect('http://localhost:8000/student_login');
+    return res.redirect('http://localhost:3000/student_login');
 });
 
 //Actualiza la propiedad isconfirmated del objeto con el id que se encuentra en la coleccion Teachers, y la cambia a true cuando se hace el req a la url.
@@ -56,7 +56,7 @@ app.get('/confirmation/teacher/:emailtoken', async (req, res) => {
         res.send('error');
     }
 
-    return res.redirect('http://localhost:8000/teacher_login');
+    return res.redirect('http://localhost:3000/teacher_login');
 });
 
 server.applyMiddleware({app});

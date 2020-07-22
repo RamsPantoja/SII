@@ -6,7 +6,8 @@ const RootSession = ({Component}) => {
     const { data: currentUserStudent, 
         error: currentUserStudentError, 
         loading: currentUserStudentLoading, 
-        refetch: currentUserStudentRefetch } = useQuery(CURRENT_USER_STUDENT);    
+        refetch: currentUserStudentRefetch,
+        client: currentUserStudentClient } = useQuery(CURRENT_USER_STUDENT);    
     const { data: currentUserTeacher, 
         error: currentUserTeacherError, 
         loading: currentUserTeacherLoading, 
@@ -16,7 +17,12 @@ const RootSession = ({Component}) => {
         return null;
     }
     return (
-        <Component currentUserStudentRefetch={currentUserStudentRefetch} sessionStudent={currentUserStudent} currentUserTeacherRefetch={currentUserTeacherRefetch} sessionTeacher={currentUserTeacher}/>
+        <Component 
+        currentUserStudentRefetch={currentUserStudentRefetch} 
+        sessionStudent={currentUserStudent} 
+        currentUserTeacherRefetch={currentUserTeacherRefetch} 
+        sessionTeacher={currentUserTeacher}
+        currentUserStudentClient={currentUserStudentClient}/>
     )
 }
 

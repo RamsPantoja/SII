@@ -11,8 +11,7 @@ import CreateUserTeacher from './page/create_user_teacher';
 import TeacherPanel from './page/teacher_panel';
 import StudentPanel from './page/student_panel';
 
-const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefetch, sessionTeacher}) => {
-  console.log(sessionStudent)
+const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefetch, sessionTeacher, currentUserStudentClient}) => {
   return (
       <Router>
         <div className='App-container'>
@@ -28,7 +27,9 @@ const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefet
             <Route path='/student_register' component={CreateUserStudent}/>
             <Route path='/teacher_register' component={CreateUserTeacher}/>
             <Route path='/teacher_panel' component={TeacherPanel}/>
-            <Route path='/student_panel' render={() => <StudentPanel sessionStudent={sessionStudent}/>}/>
+            <Route path='/student_panel' render={() => <StudentPanel 
+                                                          sessionStudent={sessionStudent}
+                                                          currentUserStudentClient={currentUserStudentClient}/>}/>
           </Switch>
         </div>
       </Router>

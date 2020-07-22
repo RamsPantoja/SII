@@ -17,6 +17,9 @@
     font-weight: bold;
     outline: none;
 }
+.dropdown-button:focus {
+    background-color: #80cbc4;
+}
 
 .dropdown-button:hover {
     background-color: #80cbc4;
