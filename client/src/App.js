@@ -16,19 +16,27 @@ const App = ({currentUserStudentRefetch, sessionStudent, currentUserTeacherRefet
       <Router>
         <div className='App-container'>
           <Switch>
-            <Route exact path='/' render={() => <MainPage sessionStudent={sessionStudent} sessionTeacher={sessionTeacher}/>}/>
-            <Route path='/teacher_login' render={(history) => <TeacherLogin 
-                                                                currentUserTeacherRefetch={currentUserTeacherRefetch} 
-                                                                history={history}/>}/>
-            <Route path='/student_login' render={(history) => <StudentLogin 
-                                                                currentUserStudentRefetch={currentUserStudentRefetch} 
-                                                                history={history} 
-                                                                sessionStudent={sessionStudent}/>}/>
+            <Route exact path='/'>
+              <MainPage 
+                sessionStudent={sessionStudent} 
+                sessionTeacher={sessionTeacher}/>
+            </Route>
+            <Route path='/teacher_login'>
+              <TeacherLogin 
+                currentUserTeacherRefetch={currentUserTeacherRefetch} />
+            </Route>
+            <Route path='/student_login'>
+              <StudentLogin 
+                currentUserStudentRefetch={currentUserStudentRefetch}
+                sessionStudent={sessionStudent}/>
+            </Route>
             <Route path='/student_register' component={CreateUserStudent}/>
             <Route path='/teacher_register' component={CreateUserTeacher}/>
             <Route path='/teacher_panel' component={TeacherPanel}/>
-            <Route path='/student_panel' render={() => <StudentPanel 
-                                                          sessionStudent={sessionStudent}/>}/>
+            <Route path='/student_panel'>
+              <StudentPanel 
+                sessionStudent={sessionStudent}/>
+            </Route>
           </Switch>
         </div>
       </Router>

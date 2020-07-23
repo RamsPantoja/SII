@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter, Redirect, useHistory } from 'react-router-dom';
 
 //Components
 import LoginComponentWithHook from '../components/login_component';
@@ -14,7 +14,8 @@ import {AUTH_STUDENT} from '../apolloclient/mutations';
 import './styles/login_styles.css';
 import { stateSchemaLogin } from '../hooks/handleInputChange';
 
-const StudentLogin = ({currentUserStudentRefetch, history, sessionStudent}) => {
+const StudentLogin = ({currentUserStudentRefetch, sessionStudent}) => {
+    let history = useHistory();
     const [state, handleInputChange] = useAuthValidation(stateSchemaLogin);
     const { email, password } = state;
     const { getUserStudentAuth } = sessionStudent;

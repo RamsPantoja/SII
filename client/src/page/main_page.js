@@ -30,8 +30,7 @@ const MainPage = ({sessionStudent, sessionTeacher}) => {
 
     return (
         <Fragment>
-            {isStudentAuth}
-            {isTeacherAuth}
+            {isStudentAuth || isTeacherAuth}
             <div className='mainPage-container'>
                 <div className='section-container'>{sections}</div>
             </div>

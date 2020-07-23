@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, Redirect, useHistory } from 'react-router-dom';
 //styles
 import './styles/student_panel.css';
 
@@ -17,13 +17,20 @@ const StudentPanel = ({sessionStudent}) => {
     const { getUserStudentAuth } = sessionStudent;
     const isStudentAuth = getUserStudentAuth ?  null : <Redirect to='/student_login'/>
 
+    const handleLogOutStudent = (e, client) => {
+        e.preventDefault();
+        localStorage.removeItem('token', '')
+        client.resetStore();
+    }
+
     return (
         <Fragment>
             {isStudentAuth}
             <div className='panel-container'>
                 <StudentDrawer url={url}/>
                 <StudentHeader 
-                sessionStudent={sessionStudent}/>
+                sessionStudent={sessionStudent}
+                handleLogOutStudent={handleLogOutStudent}/>
                 <div className='panel-content'>
                     <div className='panel-content-container'>
                         <Switch>

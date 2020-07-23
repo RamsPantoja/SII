@@ -3,13 +3,13 @@ import './styles/dropdown_user.css';
 import DropdownContent from './student_components/dropdown_content';
 import { useHistory } from 'react-router-dom';
 
-const DropdownUser = ({sessionEntity}) => {
+const DropdownUser = ({sessionEntity, handleLogOutStudent}) => {
     let history = useHistory();
     const { getUserStudentAuth } = sessionEntity;
     const [ dropdown, setDropdown ] = useState(false);
     
     const isUserAuth = getUserStudentAuth ? getUserStudentAuth.email : <span>NoUser</span>
-    const isDropdown = dropdown ? <DropdownContent history={history}/> : null;
+    const isDropdown = dropdown ? <DropdownContent handleLogOutStudent={handleLogOutStudent}/> : null;
 
     const handleOnClickDropDown = (e) => {
         e.preventDefault();

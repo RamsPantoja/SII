@@ -2,7 +2,7 @@ import React from 'react';
 import './student_header.css';
 import DropdownUser from '../../dropdown_user';
 
-const StudentHeader = ({sessionStudent}) => {
+const StudentHeader = ({sessionStudent, handleLogOutStudent}) => {
     return (
         <header className='header'>
             <div className='header-container'>
@@ -12,7 +12,8 @@ const StudentHeader = ({sessionStudent}) => {
                 </div>
                 <div className='user-info'>
                     <DropdownUser 
-                    sessionEntity={sessionStudent}/>
+                    sessionEntity={sessionStudent}
+                    handleLogOutStudent={handleLogOutStudent}/>
                 </div>
             </div>
         </header>
