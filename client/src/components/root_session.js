@@ -1,6 +1,6 @@
 import { CURRENT_USER_STUDENT, CURRENT_USER_TEACHER } from '../apolloclient/querys';
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 const RootSession = ({Component}) => {
     const { data: currentUserStudent, 

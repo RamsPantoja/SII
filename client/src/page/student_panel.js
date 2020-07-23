@@ -12,7 +12,7 @@ import SchoolSchedule from '../components/student_components/school_schedule';
 import StudentDrawer from '../components/student_components/drawer/student_drawer';
 import StudentHeader from '../components/student_components/header/student_header';
 
-const StudentPanel = ({sessionStudent, currentUserStudentClient}) => {
+const StudentPanel = ({sessionStudent}) => {
     const { path, url} = useRouteMatch();
     const { getUserStudentAuth } = sessionStudent;
     const isStudentAuth = getUserStudentAuth ?  null : <Redirect to='/student_login'/>
@@ -23,8 +23,7 @@ const StudentPanel = ({sessionStudent, currentUserStudentClient}) => {
             <div className='panel-container'>
                 <StudentDrawer url={url}/>
                 <StudentHeader 
-                sessionStudent={sessionStudent}
-                currentUserStudentClient={currentUserStudentClient}/>
+                sessionStudent={sessionStudent}/>
                 <div className='panel-content'>
                     <div className='panel-content-container'>
                         <Switch>

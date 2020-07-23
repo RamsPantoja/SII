@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import './styles/dropdown_user.css';
 import DropdownContent from './student_components/dropdown_content';
+import { useHistory } from 'react-router-dom';
 
-const DropdownUser = ({sessionEnity, currentUserStudentClient}) => {
-    const { getUserStudentAuth } = sessionEnity;
+const DropdownUser = ({sessionEntity}) => {
+    let history = useHistory();
+    const { getUserStudentAuth } = sessionEntity;
     const [ dropdown, setDropdown ] = useState(false);
     
     const isUserAuth = getUserStudentAuth ? getUserStudentAuth.email : <span>NoUser</span>
-    const isDropdown = dropdown ? <DropdownContent currentUserStudentClient={currentUserStudentClient}/> : null;
+    const isDropdown = dropdown ? <DropdownContent history={history}/> : null;
 
     const handleOnClickDropDown = (e) => {
         e.preventDefault();

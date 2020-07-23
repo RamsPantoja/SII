@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
-    "apollo-server-express": "^2.15.1",
+    "apollo-server-express": "^2.16.0",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -24,7 +24,7 @@
     "graphql": "^14.7.0",
     "graphql-import": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.24",
+    "mongoose": "^5.9.25",
     "nodemailer": "^6.4.10",
     "nodemon": "^2.0.4"
   }

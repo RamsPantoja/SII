@@ -4,11 +4,7 @@ import './index.css';
 import { App } from './App'
 import RootSession from './components/root_session';
 import * as serviceWorker from './serviceWorker';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from '@apollo/react-hooks'
-import { ApolloLink, concat,  } from 'apollo-link';
+import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache, ApolloLink, concat } from '@apollo/client'
 
 const httpLink = new HttpLink({uri: 'http://localhost:8200/graphql'});
 

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import {useMutation} from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 
 //Components
@@ -28,7 +28,7 @@ const StudentLogin = ({currentUserStudentRefetch, history, sessionStudent}) => {
         onCompleted: async (data) => {
             localStorage.setItem('token', data.authStudent.token);
             await currentUserStudentRefetch();
-            history.push('/student_panel');
+            history.push('/student_panel')
         }
     })
 

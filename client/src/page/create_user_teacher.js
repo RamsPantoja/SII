@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 //Mutations
 import {CREATE_TEACHER} from '../apolloclient/mutations';
 //Components

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 //components
 import CreateUserStudentForm from '../components/create_user_student_form';
 import ValidatorEmail from '../components/validator_email';

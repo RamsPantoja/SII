@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-
 //Styles
 import './styles/create_user_form.css';
 //Components
