@@ -6,7 +6,6 @@
 }
 
 .dropdown-button {
-    background-color: #4f9a94;
     display: flex;
     color: #000000;
     border: none;
@@ -16,9 +15,6 @@
     font-family: 'Roboto Mono';
     font-weight: bold;
     outline: none;
-}
-.dropdown-button:focus {
-    background-color: #80cbc4;
 }
 
 .dropdown-button:hover {
