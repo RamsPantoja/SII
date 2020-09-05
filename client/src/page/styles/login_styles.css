@@ -5,7 +5,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .login-subcontainer {
@@ -35,4 +34,19 @@
     margin: 0px auto;
     padding-top: 5px;
     font-size: 11px;
+}
+
+.to-home {
+    display: inline-block;
+    margin: 20px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    position: absolute;
+    background-color: rgb(79,154,148);
+    text-decoration: none;
+    color: #000000;
+}
+
+.to-home:hover {
+    background-color: #80cbc4;
 }

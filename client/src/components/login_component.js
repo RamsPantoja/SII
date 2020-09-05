@@ -1,6 +1,4 @@
-import React, { Fragment, useState } from 'react';
-
-//Hooks
+import React, { Fragment} from 'react';
 //Styles
 import './styles/login_component.css';
 

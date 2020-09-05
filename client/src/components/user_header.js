@@ -1,8 +1,8 @@
 import React from 'react';
-import './student_header.css';
-import DropdownUser from '../../dropdown_user';
+import './styles/user_header.css';
+import DropdownUser from './dropdown_user';
 
-const StudentHeader = ({sessionStudent, handleLogOutStudent}) => {
+const UserHeader = ({sessionEntity, handleLogOutEntity}) => {
     return (
         <header className='header'>
             <div className='header-container'>
@@ -12,12 +12,12 @@ const StudentHeader = ({sessionStudent, handleLogOutStudent}) => {
                 </div>
                 <div className='user-info'>
                     <DropdownUser 
-                    sessionEntity={sessionStudent}
-                    handleLogOutStudent={handleLogOutStudent}/>
+                    sessionEntity={sessionEntity}
+                    handleLogOutEntity={handleLogOutEntity}/>
                 </div>
             </div>
         </header>
     )
 }
 
-export default StudentHeader;
+export default UserHeader;

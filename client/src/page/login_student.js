@@ -35,10 +35,10 @@ const StudentLogin = ({currentUserStudentRefetch, sessionStudent}) => {
 
     const errorSpan = error ? <span className='error-span'>{error.message}</span> : null;
     const isStudentAuth = getUserStudentAuth ? <Redirect to='/student_panel'/> : null;
-    
     return (
         <Fragment>
             {isStudentAuth}
+            <Link className='to-home' to='/'>Inicio</Link>
             <div className='login-container'>
                 <div className='login-subcontainer'>
                     <img src='./img/perfil.svg' height='100px' width='100px' alt='student-icon'></img>

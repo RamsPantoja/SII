@@ -4,10 +4,10 @@ import './styles/dropdown_content.css';
 import { ApolloConsumer } from '@apollo/client'
 
 
-const DropdownContent = ({handleLogOutStudent}) => {
+const DropdownContent = ({handleLogOutEntity}) => {
 
     const handleOnClick = (e, client) => {
-        handleLogOutStudent(e, client);
+        handleLogOutEntity(e, client);
     }
     
     return (

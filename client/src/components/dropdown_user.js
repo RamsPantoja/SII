@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import './styles/dropdown_user.css';
-import DropdownContent from './student_components/dropdown_content';
-import { useHistory } from 'react-router-dom';
+import DropdownContent from './dropdown_content';
 
-const DropdownUser = ({sessionEntity, handleLogOutStudent}) => {
-    const { getUserStudentAuth } = sessionEntity;
+const DropdownUser = ({sessionEntity, handleLogOutEntity}) => {
+    const { getUserStudentAuth, getUserTeacherAuth } = sessionEntity;
     const [ dropdown, setDropdown ] = useState(false);
     const [ backgroundButton, setBackgroundButton ] = useState(false);
-    
-    const isUserAuth = getUserStudentAuth ? getUserStudentAuth.email : <span>NoUser</span>
-    const isDropdown = dropdown ? <DropdownContent handleLogOutStudent={handleLogOutStudent}/> : null;
+
+    const whichUser = (getUserStudentAuth, getUserTeacherAuth) => {
+        let whichUserIs;
+        if (getUserStudentAuth) {
+            whichUserIs = getUserStudentAuth
+        } else {
+            whichUserIs = getUserTeacherAuth
+        }
+        return whichUserIs
+    }
+
+    const isUserAuth = whichUser(getUserStudentAuth, getUserTeacherAuth);
+    const userEmailAuth = isUserAuth ? isUserAuth.email : <span>NoUser</span>
+    const isDropdown = dropdown ? <DropdownContent handleLogOutEntity={handleLogOutEntity}/> : null;
     const isBackGroundButton = backgroundButton ? '#80cbc4' : '';
 
     const handleOnClickDropDown = (e) => {
@@ -40,7 +50,7 @@ const DropdownUser = ({sessionEntity, handleLogOutStudent}) => {
                     <i className='material-icons md-24'>account_circle</i>
                 </div>
                 <div className='user-dropdown'>
-                    {isUserAuth}
+                    {userEmailAuth}
                 </div>
             </button>
             {isDropdown}

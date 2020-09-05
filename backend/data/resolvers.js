@@ -65,7 +65,7 @@ export const resolvers = {
             if (!context.getUserEmail) {
                 return null;
             }
-            const userTeacher = await Teachers.findOne({ email: context.getUserEmail.email});
+            const userTeacher = await Teachers.findOne({email: context.getUserEmail.email});
             return userTeacher;
         }
     },
