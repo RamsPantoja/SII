@@ -1,0 +1,117 @@
+.add-course-container {
+    display: flex;
+    height: 100%;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.add-course-subcontainer {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.add-course-subcontainer-flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.add-course-subcontainer-flex-column > button {
+    margin: 0 auto;
+    transform: scale(1.2);
+    color: #000000;
+    transition: 0.1s ease;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.add-course-subcontainer-flex-column > button:hover {
+    transform: scale(1.4);
+}
+
+.add-course-subcontainer-flex-column > p {
+    margin: 0 auto;
+    padding: 1em;
+    font-size: 1.1rem;
+}
+
+
+.add-course-form-container {
+    display: flex;
+    height: 80%;
+    width: 60%;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.add-course-form-subcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 30em;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: rgb(36,41,46);
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.add-course-form-subcontainer > input {
+    padding: 0.5em;
+    height: 1.5em;
+    width: 90%;
+    max-width: 20em;
+    margin: 1em;
+    background-color: rgb(240,242,245);
+    border: none;
+    color: #000000;
+    border-radius: 3px;
+    font-weight: bolder;
+    text-align: center;
+    font-family: 'Roboto Mono';
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.add-course-form-subcontainer > h2 {
+    margin: 0.5em;
+}
+
+.add-course-form-subcontainer > div {
+    margin: 1em;
+    transform: scale(2);
+}
+
+.add-course-form-subcontainer > button {
+    padding: 0.5em;
+    background-color: #FFFFFF;
+    margin: 1em;
+    outline: none;
+    border: none;
+    font-family: 'Roboto Mono';
+    font-weight: bolder;
+    border-radius: 3px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transform: scale(1);
+    transition: 0.1s ease;
+}
+
+.add-course-form-subcontainer > button:hover {
+    transform: scale(1.1);
+    background-color: #80cbc3;
+}

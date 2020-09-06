@@ -7,7 +7,7 @@ const UserHeader = ({sessionEntity, handleLogOutEntity}) => {
         <header className='header'>
             <div className='header-container'>
                 <div className='title-panel'>
-                    <i className='material-icons md-48'>engineering</i>
+                    <i className='material-icons md-light md-48'>engineering</i>
                     <h1>FIM</h1>
                 </div>
                 <div className='user-info'>

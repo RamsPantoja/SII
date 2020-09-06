@@ -31,7 +31,7 @@ const CreateUserTeacher = () => {
     if (onCompleted) {
         return (
             <ValidatorEmail data={onCompleted}
-            to={'/teacher/login'}/>
+            to={'/teacher_login'}/>
         )
     }
     return(
