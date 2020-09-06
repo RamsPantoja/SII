@@ -22,6 +22,13 @@ const typeDefs = gql `
         isconfirmated: Boolean
     }
 
+    type Course {
+        id: ID
+        coursename: String
+        section: String
+        teacher: Teacher
+    }
+
     type Token {
         token: String!
     }
@@ -41,6 +48,13 @@ const typeDefs = gql `
         img: String
         gender: genderUser!
         isconfirmated: Boolean
+    }
+
+    input inputCourse {
+        id: ID
+        coursename: String!
+        section: String!
+        teacher: String!
     }
 
     input inputTeacher {
@@ -64,6 +78,7 @@ const typeDefs = gql `
     type Mutation {
         createStudent(input: inputStudent): String
         createTeacher(input: inputTeacher): String
+        createCourse(input: inputCourse): String
         authStudent(email: String!, password: String!): Token
         authTeacher(email: String!, password: String!): Token
     }

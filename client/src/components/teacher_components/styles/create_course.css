@@ -63,8 +63,8 @@
     justify-content: center;
     align-items: center;
     padding: 1em;
-    background-color: rgb(36,41,46);
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #000000;
     border-radius: 5px;
 }
 
@@ -86,6 +86,11 @@
     outline: none;
 }
 
+.add-course-form-subcontainer > input:focus {
+    padding: 0.38em;
+    border: 1.5px rgb(127,138,167) solid;
+}
+
 .add-course-form-subcontainer > h2 {
     margin: 0.5em;
 }
@@ -97,7 +102,7 @@
 
 .add-course-form-subcontainer > button {
     padding: 0.5em;
-    background-color: #FFFFFF;
+    background-color: #4f9a94;
     margin: 1em;
     outline: none;
     border: none;

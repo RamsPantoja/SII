@@ -66,3 +66,12 @@ teacherSchema.pre('save', function (next) {
 })
 
 export const Teachers = mongoose.model('Teachers', teacherSchema);
+
+const courseSchema = new Schema({
+    coursename: String,
+    section: String,
+    teacher: Object
+});
+
+export const Courses = mongoose.model('Courses', courseSchema);
+
