@@ -21,10 +21,17 @@ export const stateSchemaLogin = {
     email: { value: ''},
     password: { value: ''}
 }
+
+export const stateSchemaCreateCourse = {
+    coursename: { value: '', error: '', errorfiel: 'input-register'},
+    section: { value: '', error: '', errorfiel: 'input-register'}
+}
+
 export const disableSchema = {
     status: true,
     error: '',
 }
+
 export const validationSchemaStudent = {
     firstname: {
         required: true,
@@ -99,5 +106,22 @@ export const validationSchemaTeacher = {
     },
     gender: {
         required: true
+    }
+}
+
+export const validationSchemaCreateCourse = {
+    coursename: {
+        required: true,
+        validator: {
+            regEx: /^[\w]+[\w\.'\s]*[\w\.]$/,
+            error: 'No debe contener espacios al principio/final, caracteres especiales.'
+        }
+    },
+    section: {
+        required: true,
+        validator: {
+            regEx: /^[\w]+[\w\.'\s]*[\w\.]$/,
+            error: 'No debe contener espacios al principio/final, caracteres especiales.'
+        }
     }
 }

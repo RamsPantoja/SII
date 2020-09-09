@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import CreateCourseForm from './create_course_form';
 import './styles/create_course.css';
+import useFormValidationCourse from '../../hooks/useFormValidationCourse';
+import { stateSchemaCreateCourse, disableSchema, validationSchemaCreateCourse } from '../../hooks/handleInputChange';
 
 const CreateCourse = () => {
-    const [ addCourseEvent, setAddCourseEvent ] = useState(false)
+    const [ state, disable, handleOnChange ] = useFormValidationCourse(stateSchemaCreateCourse, validationSchemaCreateCourse, disableSchema)
+    const [ addCourseEvent, setAddCourseEvent ] = useState(false);
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -12,18 +16,10 @@ const CreateCourse = () => {
 
     if (addCourseEvent) {
         return (
-            <div className='add-course-form-container'>
-                <div className='add-course-form-subcontainer'>
-                    <div>
-                        <i className='material-icons md-48'>class</i>
-                    </div>
-                    <h2>Nuevo curso</h2>
-                    <input placeholder='Nombre del curso'/>
-                    <input placeholder='Seccion'/>
-                    <input type='file'/>
-                    <button type='submit'>Crear</button>
-                </div>
-            </div>
+            <CreateCourseForm 
+                handleOnChange={handleOnChange}
+                state={state}
+                disable={disable}/>
         )
     }
 

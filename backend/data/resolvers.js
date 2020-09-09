@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 
 
 // Importamos los schemas para las colecciones de la base de datos.
-import { Students, Teachers } from './db';
+import { Students, Teachers, Courses } from './db';
 
 mongoose.set('useFindAndModify', false);
 
@@ -71,6 +71,24 @@ export const resolvers = {
     },
     
     Mutation: {
+        createCourse: async (root, {input}, context) => {
+            /*const courseAlreadyExist = await Courses.findOne({coursename: input.coursename}) 
+            
+            if (courseAlreadyExist) {
+                throw new Error('El curso ya ha sido ')
+            }*/
+
+            const teacher = await Teachers.findOne({email: context.getUserEmail.email});
+
+            const newCourse = await new Courses({
+                coursename: input.coursename,
+                section: input.section,
+                teacher: teacher.firstname +' '+ teacher.lastname,
+                teacher_email: teacher.email
+            }).save();
+
+            return 'El curso ha sido añadido.'
+        },
         createTeacher: async (root, {input}) => {
             const emailAlreadyExist = await Teachers.findOne({
                 email: input.email

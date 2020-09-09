@@ -70,7 +70,8 @@ export const Teachers = mongoose.model('Teachers', teacherSchema);
 const courseSchema = new Schema({
     coursename: String,
     section: String,
-    teacher: Object
+    teacher: String,
+    teacher_email: String
 });
 
 export const Courses = mongoose.model('Courses', courseSchema);

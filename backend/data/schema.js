@@ -20,6 +20,7 @@ const typeDefs = gql `
         img: String
         gender: genderUser
         isconfirmated: Boolean
+        courses: [Course]
     }
 
     type Course {
@@ -54,7 +55,6 @@ const typeDefs = gql `
         id: ID
         coursename: String!
         section: String!
-        teacher: String!
     }
 
     input inputTeacher {
