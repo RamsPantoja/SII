@@ -28,4 +28,10 @@ export const AUTH_TEACHER = gql `
       token
     }
   }
-`
+`;
+
+export const CREATE_COURSE = gql `
+  mutation CreateCourseTeacher($input: inputCourse, $coverimg: Upload!) {
+    createCourse(input: $input, coverimg: $coverimg)
+  }
+`;

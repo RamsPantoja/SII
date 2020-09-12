@@ -2,8 +2,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import shortid from 'shortid'
 import bcrypt from 'bcrypt';
-
+import {createWriteStream, mkdir } from 'fs';
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
 
 // Importamos los schemas para las colecciones de la base de datos.
 import { Students, Teachers, Courses } from './db';
@@ -44,6 +46,22 @@ const createUserToken = (entity, SECRET, expiresIn) => {
 
     return jwt.sign({email}, SECRET, {expiresIn});
 }
+const storeUpload = async ({stream, filename, mimetype}) => {
+    const id = shortid.generate();
+    const path = `public/images/${id}-${filename}`;
+    return new Promise((resolve, reject) => 
+        stream.pipe(createWriteStream(path))
+        .on("finish", () => resolve({id, path, filename, mimetype}))
+        .on("error", reject)
+    );
+};
+
+const processUpload = async (coverimg) => {
+    const { createReadStream, filename, mimetype } = await coverimg;
+    const stream = createReadStream();
+    const file = await storeUpload({stream, filename, mimetype});
+    return file;
+}
 
 export const resolvers = {
     Query: {
@@ -71,23 +89,32 @@ export const resolvers = {
     },
     
     Mutation: {
-        createCourse: async (root, {input}, context) => {
-            /*const courseAlreadyExist = await Courses.findOne({coursename: input.coursename}) 
-            
-            if (courseAlreadyExist) {
-                throw new Error('El curso ya ha sido ')
-            }*/
+        createCourse: async (root, {input, coverimg}, context) => {
+            mkdir("public/images", { recursive: true}, (err) => {
+                if (err) throw err;
+            });
 
             const teacher = await Teachers.findOne({email: context.getUserEmail.email});
-
-            const newCourse = await new Courses({
-                coursename: input.coursename,
-                section: input.section,
-                teacher: teacher.firstname +' '+ teacher.lastname,
-                teacher_email: teacher.email
-            }).save();
-
-            return 'El curso ha sido añadido.'
+            
+            try {
+                const file = await processUpload(coverimg);
+                const course = await new Courses({
+                    courseName: input.coursename,
+                    section: input.section,
+                    teacher: teacher.firstname +' '+ teacher.lastname,
+                    teacherEmail: teacher.email,
+                    coverImg: {
+                        id: file.id,
+                        filename: file.filename,
+                        mimetype: file.mimetype,
+                        path: file.path
+                    }
+                }).save();       
+            } catch (error) {
+                return error;
+            }
+            
+            return 'Curso añadido!'
         },
         createTeacher: async (root, {input}) => {
             const emailAlreadyExist = await Teachers.findOne({

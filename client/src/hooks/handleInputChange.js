@@ -24,7 +24,8 @@ export const stateSchemaLogin = {
 
 export const stateSchemaCreateCourse = {
     coursename: { value: '', error: '', errorfiel: 'input-register'},
-    section: { value: '', error: '', errorfiel: 'input-register'}
+    section: { value: '', error: '', errorfiel: 'input-register'},
+    coverimg: { file: '', error: '', errorfiel: 'input-register'}
 }
 
 export const disableSchema = {
@@ -123,5 +124,8 @@ export const validationSchemaCreateCourse = {
             regEx: /^[\w]+[\w\.'\s]*[\w\.]$/,
             error: 'No debe contener espacios al principio/final, caracteres especiales.'
         }
+    },
+    coverimg: {
+        required: true
     }
 }

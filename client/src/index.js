@@ -4,9 +4,10 @@ import './index.css';
 import { App } from './App'
 import RootSession from './components/root_session';
 import * as serviceWorker from './serviceWorker';
-import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache, ApolloLink, concat } from '@apollo/client'
+import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, concat} from '@apollo/client'
+import { createUploadLink } from 'apollo-upload-client';
 
-const httpLink = new HttpLink({uri: 'http://localhost:8200/graphql'});
+const httpLink = new createUploadLink({uri: 'http://localhost:8200/graphql'});
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({

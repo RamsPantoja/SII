@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
-
 import CreateCourseForm from './create_course_form';
 import './styles/create_course.css';
 import useFormValidationCourse from '../../hooks/useFormValidationCourse';
 import { stateSchemaCreateCourse, disableSchema, validationSchemaCreateCourse } from '../../hooks/handleInputChange';
+import { CREATE_COURSE } from '../../apolloclient/mutations';
+import { useMutation } from '@apollo/client';
+
 
 const CreateCourse = () => {
-    const [ state, disable, handleOnChange ] = useFormValidationCourse(stateSchemaCreateCourse, validationSchemaCreateCourse, disableSchema)
+    const [ state, disable, handleOnChange, handleOnChangeFile] = useFormValidationCourse(stateSchemaCreateCourse, validationSchemaCreateCourse, disableSchema);
+    const { coursename, section, coverimg} = state;
     const [ addCourseEvent, setAddCourseEvent ] = useState(false);
+    const [ createCourse, {data, loading, error}] = useMutation(CREATE_COURSE, {
+        variables: {
+            input: {
+                coursename: coursename.value,
+                section: section.value
+            },
+            coverimg: coverimg.file
+        }
+    })
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -19,7 +31,9 @@ const CreateCourse = () => {
             <CreateCourseForm 
                 handleOnChange={handleOnChange}
                 state={state}
-                disable={disable}/>
+                disable={disable}
+                handleOnChangeFile={handleOnChangeFile}
+                createCourse={createCourse}/>
         )
     }
 

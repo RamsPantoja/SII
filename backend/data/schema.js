@@ -78,7 +78,7 @@ const typeDefs = gql `
     type Mutation {
         createStudent(input: inputStudent): String
         createTeacher(input: inputTeacher): String
-        createCourse(input: inputCourse): String
+        createCourse(input: inputCourse, coverimg: Upload!): String
         authStudent(email: String!, password: String!): Token
         authTeacher(email: String!, password: String!): Token
     }

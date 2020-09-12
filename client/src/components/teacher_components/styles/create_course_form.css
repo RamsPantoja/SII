@@ -41,7 +41,6 @@
 }
 
 .add-course-form-subcontainer > input:focus {
-    padding: 0.38em;
     border: 1.5px rgb(127,138,167) solid;
 }
 
@@ -49,7 +48,7 @@
     margin: 0.5em;
 }
 
-.add-course-form-subcontainer > div {
+.img-icon {
     margin: 1em;
     transform: scale(2);
 }
@@ -73,4 +72,41 @@
 .add-course-form-subcontainer > button:hover {
     transform: scale(1.1);
     background-color: #80cbc3;
+}
+
+.input-file-container {
+    display: flex;
+    height: 2em;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 17.5em;
+    width: 100%;
+    margin: 1em 0;
+    border-radius: 3px;
+    font-weight: bolder;
+}
+
+.input-file-subcontainer {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    font-size: 0.8rem;
+    font-family: 'Roboto Mono';
+}
+
+.input-file-subcontainer > input {
+    width: 75%;
+    padding: 0.5em;
+    border-radius: 3px;
+    margin: 0.5em auto;
+    background-color: rgb(240,242,245);
+}
+
+.input-file-subcontainer > span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: default;
 }

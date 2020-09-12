@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
 
-
 const useFormValidationCourse = (stateSchema, validationSchema = {}, disableSchema) => {
     const [ state, setState ] = useState(stateSchema);
     const [ disable, setDisable ] = useState(disableSchema);
@@ -11,8 +10,9 @@ const useFormValidationCourse = (stateSchema, validationSchema = {}, disableSche
            const isRequiredFiel = validationSchema[key].required;
            const stateValue = state[key].value;
            const stateError = state[key].error;
+           const stateValueFile = state[key].file;
 
-           return ( isRequiredFiel && !stateValue) || stateError
+           return ( isRequiredFiel && (!stateValue || !stateValueFile)) || stateError 
        })
 
        return hasErrorInSate;
@@ -69,7 +69,27 @@ const useFormValidationCourse = (stateSchema, validationSchema = {}, disableSche
         [validationSchema]
     )
 
-    return [state, disable, handleOnChange]
+    const handleOnChangeFile = useCallback(
+        (e) => {
+            const file = e.target.files[0];
+            const name = e.target.name;
+            let error = '';
+
+            if (validationSchema[name].required) {
+                if(!file) {
+                    error = 'Campo obligatorio.'
+                }
+            }
+
+            setState((prevState) => ({
+                ...prevState,
+                [name]: { file, error}
+            }))
+        },
+        [validationSchema]
+    )
+
+    return [state, disable, handleOnChange, handleOnChangeFile]
 }
 
 export default useFormValidationCourse;
