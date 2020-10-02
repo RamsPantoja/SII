@@ -102,6 +102,7 @@
     border-radius: 3px;
     margin: 0.5em auto;
     background-color: rgb(240,242,245);
+    outline: none;
 }
 
 .input-file-subcontainer > span {

@@ -25,9 +25,18 @@ const typeDefs = gql `
 
     type Course {
         id: ID
-        coursename: String
+        courseName: String
         section: String
-        teacher: Teacher
+        teacher: String
+        teacherEmaiL: String
+        coverImg: CoverImg
+    }
+
+    type CoverImg {
+        id: ID
+        filename: String
+        mimetype: String
+        path: String
     }
 
     type Token {
@@ -73,6 +82,7 @@ const typeDefs = gql `
         getTeachers(limit: Int): [Teacher]
         getUserStudentAuth: Student
         getUserTeacherAuth: Teacher
+        getCourses(limit: Int): [Course]
     }
 
     type Mutation {

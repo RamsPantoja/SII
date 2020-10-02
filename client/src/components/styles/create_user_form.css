@@ -112,16 +112,6 @@
     border: 1.5px rgb(127,138,167) solid;
 }
 
-.span-error-input {
-    display: inline-block;
-    margin: 0px;
-    padding: 8px;
-    border-radius: 3px;
-    color: #FFFFFF;
-    font-size: 11px;
-    background-color: rgb(189,84,82) ;
-}
-
 .network-error {
     display: inline-block;
     margin: 10px 0px;

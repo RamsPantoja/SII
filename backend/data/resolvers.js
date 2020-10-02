@@ -56,11 +56,12 @@ const storeUpload = async ({stream, filename, mimetype}) => {
     );
 };
 
-const processUpload = async (coverimg) => {
-    const { createReadStream, filename, mimetype } = await coverimg;
+const processUpload = async (createReadStream, filename, mimetype) => {
     const stream = createReadStream();
-    const file = await storeUpload({stream, filename, mimetype});
-    return file;
+    if (filename != null && imageMimeTypes.includes(mimetype)) {
+        const file = await storeUpload({stream, filename, mimetype});
+        return file;
+    }
 }
 
 export const resolvers = {
@@ -85,19 +86,32 @@ export const resolvers = {
             }
             const userTeacher = await Teachers.findOne({email: context.getUserEmail.email});
             return userTeacher;
+        },
+        getCourses: async (root, {limit}) => {
+            return Courses.find({}).limit(limit);
         }
     },
     
     Mutation: {
         createCourse: async (root, {input, coverimg}, context) => {
+            const { createReadStream, filename, mimetype } = await coverimg;
+            const teacher = await Teachers.findOne({email: context.getUserEmail.email});
+            const courseAlreadyExist = await Courses.findOne({ courseName: input.coursename});
+            const isFormatImage = imageMimeTypes.includes(mimetype);
+
             mkdir("public/images", { recursive: true}, (err) => {
                 if (err) throw err;
             });
 
-            const teacher = await Teachers.findOne({email: context.getUserEmail.email});
+            if (courseAlreadyExist && courseAlreadyExist.teacherEmail === teacher.email) {
+                throw new Error('Ya ha sido creado anteriormente :(')
+            }
             
+            if (!isFormatImage) {
+                throw new Error('La imagen debe ser .jpg/.gif/.png');
+            }
             try {
-                const file = await processUpload(coverimg);
+                const file = await processUpload(createReadStream, filename, mimetype);
                 const course = await new Courses({
                     courseName: input.coursename,
                     section: input.section,

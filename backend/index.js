@@ -6,13 +6,16 @@ import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
 import { Students, Teachers } from './data/db';
 
 dotenv.config({path:'variables.env'});
 mongoose.set('useFindAndModify', false);
-
-
+const dir = path.join(process.cwd(), 'public/images');
 const app = express();
+
+app.use('/public/images', express.static(dir));
+app.use(cors('*'));
 
 //establece el contexto entre el servidor y el cliente, leyendo los headers del cliente.
 const server = new ApolloServer({
