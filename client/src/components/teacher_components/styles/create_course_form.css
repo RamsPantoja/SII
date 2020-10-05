@@ -22,7 +22,7 @@
     border-radius: 5px;
 }
 
-.add-course-form-subcontainer > input {
+.input-course-form {
     padding: 0.5em;
     height: 1.5em;
     width: 90%;
@@ -40,7 +40,25 @@
     outline: none;
 }
 
-.add-course-form-subcontainer > input:focus {
+.input-course-form-error {
+    padding: 0.5em;
+    height: 1.5em;
+    width: 90%;
+    max-width: 20em;
+    margin: 1em;
+    background-color: rgb(240,242,245);
+    border: 1.5px rgb(189,84,82) solid;
+    color: #000000;
+    border-radius: 3px;
+    font-weight: bolder;
+    text-align: center;
+    font-family: 'Roboto Mono';
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.input-course-form:focus {
     border: 1.5px rgb(127,138,167) solid;
 }
 

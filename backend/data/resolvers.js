@@ -96,7 +96,7 @@ export const resolvers = {
         createCourse: async (root, {input, coverimg}, context) => {
             const { createReadStream, filename, mimetype } = await coverimg;
             const teacher = await Teachers.findOne({email: context.getUserEmail.email});
-            const courseAlreadyExist = await Courses.findOne({ courseName: input.coursename});
+            const courseAlreadyExist = await Courses.findOne({ courseName: input.coursename });
             const isFormatImage = imageMimeTypes.includes(mimetype);
 
             mkdir("public/images", { recursive: true}, (err) => {
@@ -110,6 +110,7 @@ export const resolvers = {
             if (!isFormatImage) {
                 throw new Error('La imagen debe ser .jpg/.gif/.png');
             }
+            
             try {
                 const file = await processUpload(createReadStream, filename, mimetype);
                 const course = await new Courses({

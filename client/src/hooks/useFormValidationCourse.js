@@ -12,7 +12,7 @@ const useFormValidationCourse = (stateSchema, validationSchema = {}, disableSche
            const stateError = state[key].error;
            const stateValueFile = state[key].file;
 
-           return ( isRequiredFiel && (!stateValue || !stateValueFile)) || stateError 
+           return ( isRequiredFiel && !stateValue && !stateValueFile) || stateError
        })
 
        return hasErrorInSate;
@@ -47,23 +47,18 @@ const useFormValidationCourse = (stateSchema, validationSchema = {}, disableSche
             const value = e.target.value;
             const name = e.target.name;
             let error = '';
-
+            let errorfield = 'input-course-form'
 
             if (validationSchema[name].required) {
                 if (!value) {
                     error = 'Campo obligatorio.'
-                }
-            }
-
-            if ( validationSchema[name].validator !== null && typeof validationSchema[name].validator === 'object' ) {
-                if (value && !validationSchema[name].validator.regEx.test(value)) {
-                    error = validationSchema[name].validator.error;
+                    errorfield = 'input-course-form-error'
                 }
             }
 
             setState((prevState) => ({
                 ...prevState,
-                [name]: { value, error}
+                [name]: { value, error, errorfield}
             }))
         },
         [validationSchema]

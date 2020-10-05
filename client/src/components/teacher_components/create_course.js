@@ -33,7 +33,8 @@ const CreateCourse = () => {
                 state={state}
                 disable={disable}
                 handleOnChangeFile={handleOnChangeFile}
-                createCourse={createCourse}/>
+                createCourse={createCourse}
+                errorMutation={error}/>
         )
     }
 

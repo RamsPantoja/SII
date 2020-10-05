@@ -23,9 +23,9 @@ export const stateSchemaLogin = {
 }
 
 export const stateSchemaCreateCourse = {
-    coursename: { value: '', error: '', errorfiel: 'input-register'},
-    section: { value: '', error: '', errorfiel: 'input-register'},
-    coverimg: { file: '', error: '', errorfiel: 'input-register'}
+    coursename: { value: '', error: '', errorfield: 'input-course-form'},
+    section: { value: '', error: '', errorfield: 'input-course-form'},
+    coverimg: { file: '', error: '', errorfield: 'input-course-form'}
 }
 
 export const disableSchema = {
@@ -112,18 +112,10 @@ export const validationSchemaTeacher = {
 
 export const validationSchemaCreateCourse = {
     coursename: {
-        required: true,
-        validator: {
-            regEx: /^[\w]+[\w\.'\s]*[\w\.]$/,
-            error: 'No debe contener espacios al principio/final, caracteres especiales.'
-        }
+        required: true
     },
     section: {
-        required: true,
-        validator: {
-            regEx: /^[\w]+[\w\.'\s]*[\w\.]$/,
-            error: 'No debe contener espacios al principio/final, caracteres especiales.'
-        }
+        required: true
     },
     coverimg: {
         required: true

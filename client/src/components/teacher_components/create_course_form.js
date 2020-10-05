@@ -2,11 +2,12 @@ import React, { useCallback, useState } from 'react';
 import './styles/create_course_form.css';
 import Error from '../../alerts/error';
 
-const CreateCourseForm = ({handleOnChange, state, disable, handleOnChangeFile, createCourse}) => {
+const CreateCourseForm = ({handleOnChange, state, disable, handleOnChangeFile, createCourse, errorMutation}) => {
     const { coursename, section } = state;
     const [error, setError] = useState(false);
 
-    const errorSpan = error ? <Error error={disable.error}/> : null;
+    const errorSpan = error && disable.error ? <Error error={disable.error}/> : null;
+    const errorApollo = errorMutation ? <Error error={errorMutation.message}/> : null;
 
     const handleOnSubmit = useCallback(
         (e) => {
@@ -19,7 +20,7 @@ const CreateCourseForm = ({handleOnChange, state, disable, handleOnChangeFile, c
                 createCourse();
             }
         },
-        [createCourse]
+        [createCourse, disable]
     );
 
     return (
@@ -29,9 +30,11 @@ const CreateCourseForm = ({handleOnChange, state, disable, handleOnChangeFile, c
                     <i className='material-icons md-48'>class</i>
                 </div>
                 <h2>Nuevo curso</h2>
-                {errorSpan}
-                <input placeholder='Nombre del curso' name='coursename' value={coursename.value} onChange={handleOnChange}/>
-                <input placeholder='Seccion' name='section' value={section.value} onChange={handleOnChange}/>
+                {errorSpan || errorApollo}
+                <input className={coursename.errorfield} placeholder='Nombre del curso' name='coursename' value={coursename.value} onChange={handleOnChange}/>
+                { coursename.error && <Error error={coursename.error}/>}
+                <input className={section.errorfield} placeholder='Seccion' name='section' value={section.value} onChange={handleOnChange}/>
+                { section.error && <Error error={section.error}/>}
                 <div className='input-file-container'>
                     <div className='input-file-subcontainer'>
                         <input type='file' name='coverimg' onChange={handleOnChangeFile}/>
